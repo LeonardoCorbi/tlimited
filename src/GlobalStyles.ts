@@ -42,6 +42,11 @@ export const GlobalStyles = createGlobalStyle`
 
   h1, h2 {
     font-weight: normal;
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
   }
 
   :root {
