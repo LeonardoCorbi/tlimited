@@ -31,13 +31,21 @@ export const GlobalStyles = createGlobalStyle`
 
   a {
     text-decoration: none;
+    color: black;
+    z-index: 80;
+    cursor: pointer;
   }
 
   ul {
     list-style: none;
   }
 
+  h1, h2 {
+    font-weight: normal;
+  }
+
   :root {
+    font-size: 62.5%;
     --green: #3DFB03;
   }
 

@@ -11,10 +11,10 @@ export const Container = styled.header`
   position: fixed;
   top: 0;
 
-  z-index: 5;
+  z-index: 1000;
 
   width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
 
   display: flex;
   justify-content: center;
@@ -39,16 +39,16 @@ export const MenuContainer = styled.div`
     bottom: 0;
 
     background: white;
-    opacity: 0.8;
+    opacity: 0.9;
   }
   -moz-backdrop-filter: blur(50px);
   -webkit-backdrop-filter: blur(50px);
-  backdrop-filter: blur(50px);
+  backdrop-filter: blur(10px);
   justify-content: space-between;
   align-items: center;
 
   h1 {
-    font-size: 42px;
+    font-size: 4.2rem;
     font-weight: normal;
 
     a {
@@ -63,7 +63,7 @@ export const MenuContainer = styled.div`
 
   nav ul li {
     display: inline;
-    font-size: 24px;
+    font-size: 2.4rem;
   }
 
   nav ul li + li {
@@ -93,7 +93,7 @@ export const SearchContainer = styled.div`
     outline: 0;
     border: 2px solid black;
     font-family: industry-inc-base;
-    font-size: 24px;
+    font-size: 2.4rem;
     height: 58px;
     width: 1px;
     transform: 

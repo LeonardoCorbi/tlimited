@@ -4,12 +4,19 @@ import {
   Container,
   Content,
   LeftColumn,
-  Products, 
+  Products,
+  AdContainer,
 } from './styles';
 import Header from '../../components/Header';
 import Product from '../../components/Product';
+import Footer from '../../components/Footer';
+import { shoes } from '../../seed';
+import Recommended from '../../components/Recommended';
+import { Link } from 'react-router-dom';
 
 const Todos: React.FC = () => {
+
+  
   return (
     <Container>
       <Header todos/>
@@ -91,20 +98,44 @@ const Todos: React.FC = () => {
 
         <Products>
           
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
+          {
+            shoes.map(item => (
+              <Link
+                key={item.name}
+                to={'/item'}
+              >
+                <Product 
+                  flashNumber={item.flashNumber}
+                  imageUrl={item.imageUrl}
+                  name={item.name}
+                  price={item.price}
+                />
+              </Link>
+            ))
+          }
+
+          
+          
           
         </Products>
+  
+        <AdContainer>
+          
+          <img src={require('../../assets/adTodos.png')} alt=" Propaganda de Promoção de 30% de desconto"/>
+
+          <p>
+            PROMOÇÃO NIKE<br/>
+            EDIÇÃO LIMITADA COM<br/>
+            <div><span>30%</span> DE DESCONTO</div> 
+          </p>
+
+        </AdContainer>
+
+         
+
       </Content>
+      <Recommended />
+      <Footer />
     </Container>
   );
 };

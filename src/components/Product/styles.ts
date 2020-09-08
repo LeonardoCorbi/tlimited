@@ -4,50 +4,55 @@ import { MdShoppingCart } from 'react-icons/md'
 
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-rows: 40px 150px 84px 81px ;
+  grid-template-columns: auto;
 
+  padding: 8px 8px;
   position: relative;
 
   border: 2px solid black;
 
-  width: 250px;
-  height: 370px;
+  width: 232px;
+  height: 344px;
 
-  font-size: 24px;
+  font-size: 2.2rem;
 
-  span {
+  .flashContainer {
+    width: 215px;
+    /* background: red; */
     display: flex;
-    flex: 1;
-    align-items: center;
+    flex-direction: row;
     justify-content: flex-end;
+    align-items: center;
 
     span {
-      margin-right: 5px;
+      margin-right: 7px;
     }
   }
 
-  p {
-    margin-left: 7px;
-    transform: translateY(-10px);
+  img {
+    /* background: blue; */
+    width: 248px;
+    transform: translateX(-28px);
   }
 
-  div {
+  p {
+    margin-top: 8px;
+    width: 215px;
+    /* background: yellow; */
+  }
+
+  .order {
     display: flex;
-    flex: 1;
-    position: relative;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-    transform: translateY(-18px);
+    /* align-items: center; */
+    width: 215px;
 
+    /* background: green; */
     span {
-      margin-left: 7px;
-      transform: translateY(-5px);
       color: var(--green);
-      position: absolute;
-      left: 0;
     }
   }
 `;
@@ -60,16 +65,9 @@ export const FlashIcon = styled.svg`
   margin-right: 13px;
 ` 
 
-export const ShoesImg = styled.img`
-  flex-shrink: 0;
-  flex-grow: unset;
-  transform: translate(-25px, -5px);
-  width: 110%;
-`
-
 export const AddCart = styled(MdShoppingCart)`
-  width: 73px;
-  height: 73px;
+  width: 64px;
+  height: 64px;
   position: absolute;
   padding: 0 12px;
   right: 0;
