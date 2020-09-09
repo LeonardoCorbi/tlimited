@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom'
-import Acrylic from 'react-acrylic'
 
 import flashIcon from '../../assets/icons/flashIcon.svg'
 
@@ -93,7 +92,9 @@ const Header: React.FC<PageColorProps> = ({
           </SearchContainer>
           <img height="40px" src={flashIcon} alt="flashIcon"/>
           <CartIcon />
-          <ProfileIcon />
+          <Link to="/login">
+            <ProfileIcon />
+          </Link>
 
         </div>
       </MenuContainer>

@@ -85,6 +85,10 @@ export const ShoesImagePlace = styled.div`
   flex-direction: column;
 
   padding: 0 111px;
+
+  img {
+    height: 100%;
+  }
 `
 
 export const FlashContainer = styled.div`
@@ -171,6 +175,8 @@ export const SizeContainer = styled.div`
       width: 40px;
       height: 40px;
 
+      z-index: 10;
+
       &:checked {
         background: var(--green);
       }
@@ -229,15 +235,27 @@ export const AmountContainer = styled.div`
       height: 50px;
     }
 
-    div {
+    input {
       display: flex;
       justify-content: center;
       align-items: center;
+
       padding-left: 8px;
+
       font-size: 3.6rem;
+
       border: 2px solid black;
+
       width: 49px;
       max-height: 50px;
+      
+      -moz-appearance: textfield;
+
+      &::-webkit-outer-spin-button,
+      ::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
     }
 
   }

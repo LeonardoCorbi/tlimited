@@ -76,7 +76,7 @@ export const MenuContainer = styled.div`
   }
 
   div * {
-    margin-left: 53px;
+    /* margin-left: 53px; */
     cursor: pointer;
   }
 
@@ -113,6 +113,7 @@ export const SearchContainer = styled.div`
 const icons = css`
   width: 40px;
   height: 40px;
+  margin-left: 53px;
   cursor: pointer;
 `
 
@@ -122,6 +123,8 @@ export const SearchIcon = styled(BiSearch)`
   fill: ${(props: SearchIconProps) => props.active ? '#3DFB03' : 'black'};
   stroke-width: 1px;
   stroke: ${(props: SearchIconProps) => props.active ? '#3DFB03' : 'black'};
+  margin-right: 53px;
+
 `
 
 export const FlashIcon = styled(MdFlashOn)`

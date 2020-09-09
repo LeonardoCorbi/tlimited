@@ -6,6 +6,7 @@ import Tenis from './pages/Tenis'
 import Chuteiras from './pages/Chuteiras'
 import Sneakers from './pages/Sneakers'
 import Item from './pages/Item'
+import Login from './pages/Login'
 
 const Routes: React.FC = () =>{
   return(
@@ -15,6 +16,7 @@ const Routes: React.FC = () =>{
       <Route path="/chuteiras" component={Chuteiras} />
       <Route path="/sneakers" component={Sneakers} />
       <Route path="/item" component={Item} />
+      <Route path="/login" component={Login} />
     </BrowserRouter>
   )
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { 
   Container, 
@@ -26,6 +26,8 @@ import Recommended from '../../components/Recommended';
 import Footer from '../../components/Footer';
 
 const Item: React.FC = () => {
+  const [amount, setAmount] = useState(1)
+
   return (
     <Container>
 
@@ -93,28 +95,32 @@ const Item: React.FC = () => {
 
                 <div className="radioWrapper">
 
-                  <input type="radio" name="size" value="36" checked/>
+                  <input type="radio" name="size" value="36" />
                   <span>36</span>
 
                 </div>
+
                 <div className="radioWrapper">
 
                   <input type="radio" name="size" value="37"/>
                   <span>37</span>
 
                 </div>
+
                 <div className="radioWrapper">
 
                   <input type="radio" name="size" value="38"/>
                   <span>38</span>
 
                 </div>
+
                 <div className="radioWrapper">
 
                   <input type="radio" name="size" value="39"/>
                   <span>39</span>
 
                 </div>
+
                 <div className="radioWrapper">
 
                   <input type="radio" name="size" value="40"/>
@@ -139,7 +145,7 @@ const Item: React.FC = () => {
                 <button>
                   -
                 </button>
-                <div/>
+                <input type="number" name="amount" value={amount}/>
                 <button>
                   +
                 </button>
