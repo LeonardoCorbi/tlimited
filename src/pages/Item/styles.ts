@@ -223,39 +223,36 @@ export const AmountContainer = styled.div`
     font-size: 3.6rem;
     display: flex;
 
-    button {
-      font-size: 3.6rem;
-
       border: 2px solid black;
+    span {
+      font-size: 3.6rem;
+      padding-top: 5px;
       background: white;
       display: flex;
       justify-content: center;
       align-items: center;
       width: 106px;
       height: 50px;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
-    input {
+    p {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
 
-      padding-left: 8px;
-
       font-size: 3.6rem;
 
-      border: 2px solid black;
-
+      border-left: 2px solid black;
+      border-right: 2px solid black;
+      color: black;
       width: 49px;
       max-height: 50px;
       
-      -moz-appearance: textfield;
-
-      &::-webkit-outer-spin-button,
-      ::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-      }
     }
 
   }

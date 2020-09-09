@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import { 
   Container, 
@@ -27,6 +27,21 @@ import Footer from '../../components/Footer';
 
 const Item: React.FC = () => {
   const [amount, setAmount] = useState(1)
+  const submitBtnRef = useRef<HTMLButtonElement>(null)
+
+  const handleRemoveBtn = () => {
+    if(amount !== 1){
+      setAmount(amount - 1)
+    }
+  }
+
+  const handleAddBtn = () => {
+    setAmount(amount + 1)
+  }
+
+  const handleSubmitBtn = () => {
+    
+  }
 
   return (
     <Container>
@@ -142,20 +157,22 @@ const Item: React.FC = () => {
 
               <div>
 
-                <button>
+                <span onClick={handleRemoveBtn}>
                   -
-                </button>
-                <input type="number" name="amount" value={amount}/>
-                <button>
+                </span>
+                <p>{amount}</p>
+                <span onClick={handleAddBtn}>
                   +
-                </button>
+                </span>
 
               </div>
 
               <p>SOMENTE 6 UNIDADES</p>
             </AmountContainer>
 
-            <BuyButton type="submit">
+            <BuyButton type="submit"
+              ref={submitBtnRef}
+            >
               <span>COMPRAR</span>
               <img src={flashIcon} alt="flashIcon"/>
             </BuyButton>
