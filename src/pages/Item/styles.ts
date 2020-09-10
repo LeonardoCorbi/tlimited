@@ -121,25 +121,32 @@ export const Gallery = styled.div`
   margin: 0;
   padding: 0;
 
-
-
   div {
-  scroll-snap-type: x mandatory;
-    overflow-x: auto;
     display: flex;
-    
+    overflow-x: auto;
+
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     img {
-    scroll-snap-align: start;
+      flex: none;
+      
       width: 100%;
       height: 100%;
-      flex: none;
+
+      scroll-snap-align: start;
     }
   }
 `
 
 export const Indicator = styled.div`
-
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 `
 
 export const OrderFunctionPlace = styled.div`
@@ -154,6 +161,7 @@ export const NameContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+
   h1 {
     font-size: 3.6rem;
   }
@@ -281,7 +289,7 @@ export const AmountContainer = styled.div`
       justify-content: center;
       align-items: center;
       padding-top: 4px;
-
+      
       font-size: 3.6rem;
 
       border-left: 2px solid black;
@@ -289,6 +297,7 @@ export const AmountContainer = styled.div`
       color: black;
       width: 56px;
       max-height: 50px;
+      cursor: default;
     }
   }
 

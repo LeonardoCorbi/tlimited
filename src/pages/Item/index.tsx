@@ -28,7 +28,7 @@ import Footer from '../../components/Footer';
 
 const Item: React.FC = () => {
   const [amount, setAmount] = useState(1)
-  const submitBtnRef = useRef<HTMLButtonElement>(null)
+  const galleryRef = useRef<HTMLDivElement>(null)
 
   const handleRemoveBtn = () => {
     if(amount !== 1){
@@ -40,7 +40,12 @@ const Item: React.FC = () => {
     setAmount(amount + 1)
   }
 
-  const handleSubmitBtn = () => {
+  const handleSubirBtn = () => {
+    galleryRef.current.scrollBy(1, 0)
+  }
+
+  const handleDescerBtn = () => {
+    galleryRef.current.scrollBy(-1, 0)
     
   }
 
@@ -88,19 +93,22 @@ const Item: React.FC = () => {
 
           <Gallery>
 
-            <div>
+            <div ref={galleryRef}>
 
               <img src={require('../../assets/shoe1.png')} alt="shoe"/>
               <img src={require('../../assets/shoe2.png')} alt="shoe"/>
               <img src={require('../../assets/shoe3.png')} alt="shoe"/>
               <img src={require('../../assets/shoe4.png')} alt="shoe"/>
-            {/* 14:45 */}
+
             </div>
 
           </Gallery>
 
           <Indicator>
-            []
+
+            <button onClick={handleDescerBtn}> Desce </button>
+            <button onClick={handleSubirBtn}> Sobe </button>
+
           </Indicator>
 
         </ShoesImagePlace>
@@ -187,9 +195,7 @@ const Item: React.FC = () => {
               <p className="unities">SOMENTE 6 UNIDADES</p>
             </AmountContainer>
 
-            <BuyButton type="submit"
-              ref={submitBtnRef}
-            >
+            <BuyButton type="submit">
               <span>COMPRAR</span>
               <img src={flashIcon} alt="flashIcon"/>
             </BuyButton>
