@@ -86,6 +86,7 @@ export const ShoesImagePlace = styled.div`
 
   padding: 0 111px;
 
+
   img {
     height: 100%;
   }
@@ -110,6 +111,31 @@ export const FlashIcon = styled.svg`
   fill: var(--green);
   stroke: black;
   stroke-width: 2px;
+`
+
+export const Gallery = styled.div`
+  width: 100%;
+  height: 100%;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+
+
+  div {
+  scroll-snap-type: x mandatory;
+    overflow-x: auto;
+    display: flex;
+    
+
+    img {
+    scroll-snap-align: start;
+      width: 100%;
+      height: 100%;
+      flex: none;
+    }
+  }
 `
 
 export const Indicator = styled.div`
@@ -223,7 +249,8 @@ export const AmountContainer = styled.div`
     font-size: 3.6rem;
     display: flex;
 
-      border: 2px solid black;
+    border: 2px solid black;
+    
     span {
       font-size: 3.6rem;
       padding-top: 5px;
@@ -231,11 +258,20 @@ export const AmountContainer = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 106px;
+      width: 88px;
       height: 50px;
 
       &:hover {
         cursor: pointer;
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+        line {
+          stroke: black;
+          stroke-width: 4;
+        }
       }
     }
 
@@ -244,21 +280,20 @@ export const AmountContainer = styled.div`
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      padding-top: 4px;
 
       font-size: 3.6rem;
 
       border-left: 2px solid black;
       border-right: 2px solid black;
       color: black;
-      width: 49px;
+      width: 56px;
       max-height: 50px;
-      
     }
-
   }
 
-  p {
-    margin-top: 5px;
+  .unities {
+    margin-top: 12px;
     font-size: 1.6rem;
     color: var(--green);
   }

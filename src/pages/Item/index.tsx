@@ -17,6 +17,7 @@ import {
   AmountContainer,
   BuyButton,
   HistPlace,
+  Gallery,
 } from './styles';
 
 import flashIcon from '../../assets/icons/flashIcon.svg'
@@ -85,7 +86,18 @@ const Item: React.FC = () => {
 
           </FlashContainer>
 
-          <img src={require('../../assets/foot2_big.png')} alt="big"/>
+          <Gallery>
+
+            <div>
+
+              <img src={require('../../assets/shoe1.png')} alt="shoe"/>
+              <img src={require('../../assets/shoe2.png')} alt="shoe"/>
+              <img src={require('../../assets/shoe3.png')} alt="shoe"/>
+              <img src={require('../../assets/shoe4.png')} alt="shoe"/>
+            {/* 14:45 */}
+            </div>
+
+          </Gallery>
 
           <Indicator>
             []
@@ -158,16 +170,21 @@ const Item: React.FC = () => {
               <div>
 
                 <span onClick={handleRemoveBtn}>
-                  -
+                  <svg>
+                    <line x1="0" x2="15" y1="7" y2="7" />                  
+                  </svg>
                 </span>
                 <p>{amount}</p>
                 <span onClick={handleAddBtn}>
-                  +
+                  <svg>
+                    <line x1="0" y1="8" x2="16" y2="8" />                  
+                    <line x1="8" y1="16" x2="8" y2="0" />                  
+                  </svg>
                 </span>
 
               </div>
 
-              <p>SOMENTE 6 UNIDADES</p>
+              <p className="unities">SOMENTE 6 UNIDADES</p>
             </AmountContainer>
 
             <BuyButton type="submit"
