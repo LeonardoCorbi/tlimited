@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import { 
   Container, 
@@ -30,6 +30,12 @@ const Item: React.FC = () => {
   const [amount, setAmount] = useState(1)
   const galleryRef = useRef<HTMLDivElement>(null)
 
+  const firstImgCheckRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    firstImgCheckRef.current.focus()
+  }, [])
+
   const handleRemoveBtn = () => {
     if(amount !== 1){
       setAmount(amount - 1)
@@ -40,13 +46,32 @@ const Item: React.FC = () => {
     setAmount(amount + 1)
   }
 
-  const handleSubirBtn = () => {
-    galleryRef.current.scrollBy(1, 0)
+  const handleImg1 = () => {
+    galleryRef.current.scrollTo({
+      left: 0, 
+      behavior:"smooth"
+    })
   }
 
-  const handleDescerBtn = () => {
-    galleryRef.current.scrollBy(-1, 0)
-    
+  const handleImg2 = () => {
+    galleryRef.current.scrollTo({
+      left: 1300, 
+      behavior:"smooth"
+    })
+  }
+
+  const handleImg3 = () => {
+    galleryRef.current.scrollTo({
+      left: 2200, 
+      behavior:"smooth"
+    })
+  }
+
+  const handleImg4 = () => {
+    galleryRef.current.scrollTo({
+      left: 5000, 
+      behavior:"smooth"
+    })
   }
 
   return (
@@ -106,8 +131,13 @@ const Item: React.FC = () => {
 
           <Indicator>
 
-            <button onClick={handleDescerBtn}> Desce </button>
-            <button onClick={handleSubirBtn}> Sobe </button>
+            <input ref={firstImgCheckRef} onFocus={handleImg1} type="radio" name="radio" id="radio"/>
+
+            <input onFocus={handleImg2} type="radio" name="radio" id="radio"/>
+
+            <input onFocus={handleImg3} type="radio" name="radio" id="radio"/>
+
+            <input onFocus={handleImg4} type="radio" name="radio" id="radio"/>
 
           </Indicator>
 

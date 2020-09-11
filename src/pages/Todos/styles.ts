@@ -23,7 +23,6 @@ export const Content = styled.main`
 
 `
 export const LeftColumn = styled.div`
-  /* border: 1px solid black; */
   grid-area: leftside;
   display: block;
 
@@ -31,41 +30,124 @@ export const LeftColumn = styled.div`
   width: 210px;
   font-size: 2.2rem;
   line-height: 35px;
-
+`
+export const OrderBy = styled.div`
+ 
   ul {
     margin-top: 6px;
   }
-  ul li {
-    margin-left: 2px;
-  }
+`
 
-  span + span ul {
-    margin-top: 11px;
+export const Brands = styled.div`
+  margin-top: 33px;
+  position: relative;
+
+  div {
     display: grid;
     grid-template-columns: repeat(3, 40px);
     grid-template-rows: repeat(2, 40px);
     grid-column-gap: 10px;
     grid-row-gap: 15px;
+
+    margin-top: 11px;
+
+    position: relative;
+
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: relative;
+
+      input {
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+
+        display: absolute;
+
+        width: 40px;
+        height: 40px;
+
+        z-index: 10;
+
+        &:checked {
+          background: var(--green);
+          z-index: 0;
+        }
+      }
+
+      img {
+        position: absolute;
+      }
+
+    }
   }
+`
 
-  span + span ul li {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+export const SizeSelector = styled.div`
+  margin-top: 42px;
+  position: relative;
+  
+  div {
+    display: grid;
+    grid-template-columns: repeat(3, 40px);
+    grid-template-rows: repeat(3, 40px);
+    grid-column-gap: 10px;
+    grid-row-gap: 15px;
+
+    margin-top: 11px;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+    
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      position: relative;
+
+      input {
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+
+        position: absolute;
+
+        width: 40px;
+        height: 40px;
+
+        z-index: 10;
+
+        &:checked {
+          background: var(--green);
+          z-index: 0;
+        }
+      }
+
+      p {
+        position: absolute;
+      }
+    }
   }
+`
 
+export const ColorSelector = styled.div`
+  margin-top: 43px;
 
-  .selectors {
-    width: 40px;
-    height: 40px;
-    border: 2px solid black;
-  }
+  div {
+    display: grid;
+    grid-template-columns: repeat(3, 40px);
+    grid-template-rows: repeat(2, 40px);
+    grid-column-gap: 10px;
+    grid-row-gap: 15px;
 
-  span + span p {
-    margin-top: 32px;
-  }
+    margin-top: 10px;
 
-  span + span + span + span {
     .green {
       background: var(--green);
     }
@@ -86,14 +168,28 @@ export const LeftColumn = styled.div`
       background: #594E96;
     }
 
-    .dark-purple {
+    .reddish-purple {
       background: #BF2F55;
+    }
+
+    input {
+      appearance: none;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+
+      width: 40px;
+      height: 40px;
+
+      transition: all 200ms ease-in-out;
+
+      &:checked {
+        border: 2px solid var(--green);
+      }
     }
   }
 `
 
 export const Products = styled.article`
-  /* border: 1px solid black; */
   grid-area: products;
   margin-left: 79px;
   max-height: calc(100vh - 144px);

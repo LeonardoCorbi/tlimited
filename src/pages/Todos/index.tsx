@@ -6,6 +6,10 @@ import {
   LeftColumn,
   Products,
   AdContainer,
+  OrderBy,
+  Brands,
+  SizeSelector,
+  ColorSelector,
 } from './styles';
 import Header from '../../components/Header';
 import Product from '../../components/Product';
@@ -23,11 +27,11 @@ const Todos: React.FC = () => {
       <Content>
         <LeftColumn>
 
-          <span>
+          <OrderBy>
             
             <p>ORDEM</p> 
 
-            <ul id="order">
+            <ul>
               <li>PREFERIDOS</li>
               <li>PROMOÇÕES</li>
               <li>LANÇAMENTO</li>
@@ -35,64 +39,149 @@ const Todos: React.FC = () => {
               <li>MENOR PREÇO</li>
             </ul>
 
-          </span>
+          </OrderBy>
 
-          <span>
+          <Brands>
 
             <p>MARCAS</p>
             
-            <ul>
-              <li className="selectors">
-                <img src={require('../../assets/icons/nikeIcon.svg')} alt="NikeIcon"/>
-              </li>
-              <li className="selectors">
-                <img src={require('../../assets/icons/adidasIcon.png')} alt=""/>
-              </li>
-              <li className="selectors">
-                <img src={require('../../assets/icons/newBalanceIcon.png')} alt=""/>
-              </li>
-              <li className="selectors">
-                <img src={require('../../assets/icons/reebokIcon.png')} alt=""/>
-              </li>
-              <li className="selectors">
-                <img src={require('../../assets/icons/pumaIcon.png')} alt=""/>
-              </li>
-              <li className="selectors">
-                <img src={require('../../assets/icons/underArmorIcon.png')} alt=""/>
-              </li>
-            </ul>
-          </span>
+            <div>
 
-          <span>
+              <span>
+
+                <input type="checkbox" name="brands" id="brands" />
+                <img src={require('../../assets/icons/nikeIcon.svg')} alt="NikeIcon"/>
+
+              </span>
+
+              <span>
+
+                <input type="checkbox" name="brands" id="brands"/>
+                <img src={require('../../assets/icons/adidasIcon.png')} alt="adidasIcon"/>
+
+              </span>
+
+              <span>
+
+                <input type="checkbox" name="brands" id="brands"/>
+                <img src={require('../../assets/icons/newBalanceIcon.png')} alt="newBalanceIcon"/>
+
+              </span>
+
+              <span>
+
+                <input type="checkbox" name="brands" id="brands"/>
+                <img src={require('../../assets/icons/reebokIcon.png')} alt="reebokIcon"/>
+
+              </span>
+
+              <span>
+
+                <input type="checkbox" name="brands" id="brands"/>
+                <img src={require('../../assets/icons/pumaIcon.png')} alt="pumaIcon"/>
+
+              </span>
+
+              <span>
+
+                <input type="checkbox" name="brands" id="brands"/>
+                <img src={require('../../assets/icons/underArmorIcon.png')} alt="underArmorIcon"/>
+
+              </span>
+              
+            </div>
+
+          </Brands>
+
+          <SizeSelector>
 
             <p>TAMANHO</p>
 
-            <ul>
-              <li className="selectors">36</li>
-              <li className="selectors">37</li>
-              <li className="selectors">38</li>
-              <li className="selectors">39</li>
-              <li className="selectors">40</li>
-              <li className="selectors">41</li>
-              <li className="selectors">42</li>
-              <li className="selectors">43</li>
-              <li className="selectors">44</li>
-            </ul>
-          </span>
+            <div>
 
-          <span>
+              <span>
+
+                <input type="radio" name="size" id="size" value="36"/>
+                <p>36</p>
+                
+              </span>
+
+              <span>
+
+                <input type="radio" name="size" id="size" value="37"/>
+                <p>37</p>
+                
+              </span>
+
+              <span>
+
+                <input type="radio" name="size" id="size" value="38"/>
+                <p>38</p>
+                
+              </span>
+
+              <span>
+
+                <input type="radio" name="size" id="size" value="39"/>
+                <p>39</p>
+                
+              </span>
+
+              <span>
+
+                <input type="radio" name="size" id="size" value="40"/>
+                <p>40</p>
+                
+              </span>
+
+              <span>
+
+                <input type="radio" name="size" id="size" value="41"/>
+                <p>41</p>
+                
+              </span>
+
+              <span>
+
+                <input type="radio" name="size" id="size" value="42"/>
+                <p>42</p>
+                
+              </span>
+
+              <span>
+
+                <input type="radio" name="size" id="size" value="43"/>
+                <p>43</p>
+                
+              </span>
+
+              <span>
+
+                <input type="radio" name="size" id="size" value="44"/>
+                <p>44</p>
+                
+              </span>
+
+            </div>
+
+          </SizeSelector>
+
+          <ColorSelector>
 
             <p>CORES</p>
 
-            <ul>
-              <li className="selectors green"></li>
-              <li className="selectors red"></li>
-              <li className="selectors orange"></li>
-              <li className="selectors yellow"></li>
-              <li className="selectors purple"></li>
-              <li className="selectors dark-purple"></li>
-            </ul>
-          </span>
+            <div>
+
+              <input type="checkbox" className="green" name="green" id="green"/>
+              <input type="checkbox" className="red" name="red" id="red"/>
+              <input type="checkbox" className="orange" name="orange" id="orange"/>
+              <input type="checkbox" className="yellow" name="yellow" id="yellow"/>
+              <input type="checkbox" className="purple" name="purple" id="purple"/>
+              <input type="checkbox" className="reddish-purple" name="reddish-purple" id="reddish-purple"/>
+            
+            </div>
+            
+          </ColorSelector>
 
         </LeftColumn>
 

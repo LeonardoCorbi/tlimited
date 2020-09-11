@@ -143,10 +143,32 @@ export const Gallery = styled.div`
   }
 `
 
-export const Indicator = styled.div`
+export const Indicator = styled.form`
   display: flex;
   justify-content: space-around;
   align-items: center;
+
+  width: 210px;
+
+  margin: 0 auto;
+
+  input {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+
+    border: 2px solid black;
+    width: 36px;
+    height: 16px;
+    background: black;
+
+    transition: all 200ms ease-in-out;
+
+    &:checked, &:focus {
+      width: 72px;
+      background: var(--green);
+    }
+  }
 `
 
 export const OrderFunctionPlace = styled.div`
@@ -205,6 +227,8 @@ export const SizeContainer = styled.div`
     input {
       position: absolute;
       appearance: none;
+      -moz-appearance: none;
+      -webkit-appearance: none;
 
       width: 40px;
       height: 40px;
@@ -213,12 +237,12 @@ export const SizeContainer = styled.div`
 
       &:checked {
         background: var(--green);
+        z-index: 0;
       }
     }
 
     span {
       position: absolute;
-      /* display: none; */
       cursor: default;
     }
   }
