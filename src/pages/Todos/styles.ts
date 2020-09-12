@@ -130,6 +130,7 @@ export const SizeSelector = styled.div`
       }
 
       p {
+        cursor: default;
         position: absolute;
       }
     }

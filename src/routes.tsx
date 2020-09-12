@@ -7,6 +7,7 @@ import Chuteiras from './pages/Chuteiras'
 import Sneakers from './pages/Sneakers'
 import Item from './pages/Item'
 import Login from './pages/Login'
+import Cadastro from './pages/Cadastro'
 
 const Routes: React.FC = () =>{
   return(
@@ -17,6 +18,7 @@ const Routes: React.FC = () =>{
       <Route path="/sneakers" component={Sneakers} />
       <Route path="/item" component={Item} />
       <Route path="/login" component={Login} />
+      <Route path="/cadastro" component={Cadastro} />
     </BrowserRouter>
   )
 }

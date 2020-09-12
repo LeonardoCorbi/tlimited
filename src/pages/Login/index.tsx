@@ -30,7 +30,7 @@ const Login: React.FC = () => {
           <button type="submit">Fazer login</button>
 
           <span>ainda não tem uma conta?</span>
-          <Link to="/"><h2>criar conta</h2></Link>
+          <Link to="/cadastro"><h2>criar conta</h2></Link>
           
         </form>
       </Content>
