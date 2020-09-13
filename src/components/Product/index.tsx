@@ -8,6 +8,7 @@ import {
 } from './styles';
 
 interface ShoesProps {
+  id: number
   flashNumber: number
   imageUrl: string
   name: string
@@ -15,15 +16,20 @@ interface ShoesProps {
 }
 
 const Product: React.FC<ShoesProps> = ({
+  id,
   flashNumber,
   imageUrl,
   name,
   price
 }) => {
   return (
-    <Container>
+    <Container method="POST" action="http://localhost/tlimited/item.php">
       
       <div className="flashContainer">
+
+        <div id="values">
+          <input type="number" name="itemID" id="itemID" value={id}/>
+        </div>
 
         <span>{flashNumber}</span>
 
@@ -36,7 +42,9 @@ const Product: React.FC<ShoesProps> = ({
 
       </div>
       
-      <img src={require(`../../assets/foot1.png`)} alt={`Imagem ${name}`}/>
+      <button type="submit">
+        <img src={require(`../../assets/foot1.png`)} alt={`Imagem ${name}`}/>
+      </button>
       
       <p>{name}</p>
 

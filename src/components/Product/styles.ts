@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { MdShoppingCart } from 'react-icons/md'
 
 
-export const Container = styled.div`
+export const Container = styled.form`
   display: grid;
   grid-template-rows: 40px 150px 84px 81px ;
   grid-template-columns: auto;
@@ -18,6 +18,10 @@ export const Container = styled.div`
 
   font-size: 2.2rem;
 
+  #values {
+    display: none;
+  }
+
   .flashContainer {
     width: 215px;
     /* background: red; */
@@ -29,6 +33,10 @@ export const Container = styled.div`
     span {
       margin-right: 7px;
     }
+  }
+
+  button {
+    background: none;
   }
 
   img {
