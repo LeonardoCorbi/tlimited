@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.js": "/static/js/main.b3cc336c.chunk.js",
+    "main.js.map": "/static/js/main.b3cc336c.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.0c77ef25.js",
+    "runtime-main.js.map": "/static/js/runtime-main.0c77ef25.js.map",
+    "static/js/2.55dbe989.chunk.js": "/static/js/2.55dbe989.chunk.js",
+    "static/js/2.55dbe989.chunk.js.map": "/static/js/2.55dbe989.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.2332b8bebc3e519a002f063eaa521bd2.js": "/precache-manifest.2332b8bebc3e519a002f063eaa521bd2.js",
+    "service-worker.js": "/service-worker.js",
+    "static/js/2.55dbe989.chunk.js.LICENSE.txt": "/static/js/2.55dbe989.chunk.js.LICENSE.txt",
+    "static/media/adTodos.png": "/static/media/adTodos.be6a3a5d.png",
+    "static/media/designer1.png": "/static/media/designer1.a04b28c5.png",
+    "static/media/flashIcon.svg": "/static/media/flashIcon.56774a41.svg",
+    "static/media/foot1.png": "/static/media/foot1.34324914.png",
+    "static/media/nikeIcon.svg": "/static/media/nikeIcon.1325e3c4.svg",
+    "static/media/shoe1.png": "/static/media/shoe1.a9cbc7d2.png",
+    "static/media/shoe2.png": "/static/media/shoe2.2b868dc8.png",
+    "static/media/shoe3.png": "/static/media/shoe3.a19bdfae.png",
+    "static/media/shoe4.png": "/static/media/shoe4.73261141.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0c77ef25.js",
+    "static/js/2.55dbe989.chunk.js",
+    "static/js/main.b3cc336c.chunk.js"
+  ]
+}
