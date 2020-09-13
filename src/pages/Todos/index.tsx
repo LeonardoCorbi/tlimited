@@ -191,7 +191,7 @@ const Todos: React.FC = () => {
             shoes.map(item => (
               <Link
                 key={item.name}
-                to={'/item'}
+                to={`/item/${item.id}`}
               >
                 <Product 
                   flashNumber={item.flashNumber}

@@ -25,16 +25,21 @@ import flashIcon from '../../assets/icons/flashIcon.svg'
 import Header from '../../components/Header';
 import Recommended from '../../components/Recommended';
 import Footer from '../../components/Footer';
+import { shoes } from '../../seed';
 
-const Item: React.FC = () => {
+interface matchProps {
+  match: {
+    params: {
+      id: number
+    }
+  }
+}
+
+const Item: React.FC<matchProps> = ({ match }) => {
   const [amount, setAmount] = useState(1)
   const galleryRef = useRef<HTMLDivElement>(null)
 
   const firstImgCheckRef = useRef<HTMLInputElement>(null)
-
-  useEffect(() => {
-    firstImgCheckRef.current.focus()
-  }, [])
 
   const handleRemoveBtn = () => {
     if(amount !== 1){
@@ -131,13 +136,13 @@ const Item: React.FC = () => {
 
           <Indicator>
 
-            <input ref={firstImgCheckRef} onFocus={handleImg1} type="radio" name="radio" id="radio"/>
+            <input ref={firstImgCheckRef} onFocus={handleImg1} type="radio" name="radio" id="1"/>
 
-            <input onFocus={handleImg2} type="radio" name="radio" id="radio"/>
+            <input onFocus={handleImg2} type="radio" name="radio" id="2"/>
 
-            <input onFocus={handleImg3} type="radio" name="radio" id="radio"/>
+            <input onFocus={handleImg3} type="radio" name="radio" id="3"/>
 
-            <input onFocus={handleImg4} type="radio" name="radio" id="radio"/>
+            <input onFocus={handleImg4} type="radio" name="radio" id="4"/>
 
           </Indicator>
 

@@ -16,7 +16,7 @@ const Routes: React.FC = () =>{
       <Route path="/tenis" component={Tenis} />
       <Route path="/chuteiras" component={Chuteiras} />
       <Route path="/sneakers" component={Sneakers} />
-      <Route path="/item" component={Item} />
+      <Route path="/item/:id" component={Item} />
       <Route path="/login" component={Login} />
       <Route path="/cadastro" component={Cadastro} />
     </BrowserRouter>

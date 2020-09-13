@@ -6,7 +6,6 @@ import {
   FlashIcon,
   AddCart,
 } from './styles';
-import { stringify } from 'querystring';
 
 interface ShoesProps {
   flashNumber: number
