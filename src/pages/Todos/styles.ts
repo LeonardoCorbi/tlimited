@@ -198,16 +198,14 @@ export const Products = styled.article`
 
   padding-left: 20px;
 
-  display: grid;
+  /* display: grid;
   grid-template-columns: repeat(4, 250px);
   grid-column-gap: 148px;
-  grid-row-gap: 71px; 
+  grid-row-gap: 71px;  */
 
-  .demo {
-    background: red;
-    width: 250px;
-    height: 370px;
-  }
+  display: flex;
+  flex-wrap: wrap;
+
 `
 
 export const AdContainer = styled.div`

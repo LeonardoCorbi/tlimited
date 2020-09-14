@@ -35,11 +35,31 @@ interface matchProps {
   }
 }
 
+interface itemsProps {
+  id: number
+  flashNumber: number
+  name: string
+  price: string
+}
+
 const Item: React.FC<matchProps> = ({ match }) => {
   const [amount, setAmount] = useState(1)
   const galleryRef = useRef<HTMLDivElement>(null)
 
   const firstImgCheckRef = useRef<HTMLInputElement>(null)
+
+  const [item, setItems] = useState({} as itemsProps)
+
+  useEffect(() => {
+    const data = shoes.find(shoe => shoe.id == match.params.id)
+
+    console.log(data)
+
+    setItems(data)
+
+    firstImgCheckRef.current.focus()
+
+  }, [match.params.id])
 
   const handleRemoveBtn = () => {
     if(amount !== 1){
@@ -110,7 +130,7 @@ const Item: React.FC<matchProps> = ({ match }) => {
 
           <FlashContainer>
 
-            <span>220</span>
+            <span>{item.flashNumber}</span>
             <span> flaslikes </span>
             <FlashIcon 
             width="28.781" 
@@ -153,7 +173,7 @@ const Item: React.FC<matchProps> = ({ match }) => {
           <OrderFormWrapper>
             
             <NameContainer>
-              <h1>NIKE ZOOM</h1>
+              <h1>{item.name}</h1>
               <h2>EDIÇÃO LIMITADA</h2>
             </NameContainer>
             
@@ -203,8 +223,8 @@ const Item: React.FC<matchProps> = ({ match }) => {
             </SizeContainer>
 
             <PriceContainer>
-              <h1>R$975,00</h1>
-              <p>ou 5x de 195,00</p>
+              <h1>R${item.price}</h1>
+              <p>ou 5x de {(Number(item.price) / 5).toFixed(2)}</p>
               <p>FRETE GRÁTIS</p>
             </PriceContainer>
 

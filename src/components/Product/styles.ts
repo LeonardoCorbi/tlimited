@@ -18,13 +18,15 @@ export const Container = styled.form`
 
   font-size: 2.2rem;
 
+  margin-right: 120px;
+  margin-bottom: 80px;
+
   #values {
     display: none;
   }
 
   .flashContainer {
     width: 215px;
-    /* background: red; */
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -40,7 +42,6 @@ export const Container = styled.form`
   }
 
   img {
-    /* background: blue; */
     width: 248px;
     transform: translateX(-28px);
   }
@@ -48,32 +49,57 @@ export const Container = styled.form`
   p {
     margin-top: 8px;
     width: 215px;
-    /* background: yellow; */
   }
 
   .order {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* align-items: center; */
+
     width: 215px;
 
-    /* background: green; */
+    
     span {
       color: var(--green);
+    }
+
+    div {
+      position: absolute;
+
+      height: 66px;
+      width: 100%;
+
+      transform: translate(-6px, -14px);
+
+      overflow: hidden;
+
+      padding-top: 6px;
+      padding-right: 100px;
+
+      div {
+        background: red;
+        opacity: 0;
+
+        border-top: 2px solid black;
+        border-bottom: 2px solid black;
+        position: absolute;
+      }
     }
   }
 `;
 
 export const FlashIcon = styled.svg`
   height: 40px;
-  fill: white;
   stroke: black;
   stroke-width: 2px;
   margin-right: 13px;
+
+  &:hover {
+    cursor: pointer;
+  }
 ` 
 
-export const AddCart = styled(MdShoppingCart)`
+export const AddCart = styled.svg`
   width: 64px;
   height: 64px;
   position: absolute;
@@ -82,5 +108,10 @@ export const AddCart = styled(MdShoppingCart)`
   border-top: 2px solid black;
   border-left: 2px solid black;
   border-bottom: 2px solid black;
-  transform: translateY(-15px);
+  transform: translateY(-6px);
+
+  &:hover {
+    cursor: pointer;
+  }
+  
 `

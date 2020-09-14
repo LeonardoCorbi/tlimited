@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios'
 
 import { 
   Container,
@@ -11,6 +12,13 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
 const Cadastro: React.FC = () => {
+  const [uf, setUf] = useState([])
+
+  useEffect(() => {
+    axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados/')
+      .then(uf => setUf(uf.data.nome))
+  }, [])
+
   return (
     <Container>
       <Header />
@@ -56,17 +64,25 @@ const Cadastro: React.FC = () => {
                 <div>
                   <label htmlFor="uf">estado:</label>
                   <select name="uf" id="uf">
-                    <option value="sp">SP</option>
-                    <option value="rj">RJ</option>
-                  </select>              
+                    {
+                      uf.map(item => (
+                        <option key={item.nome} value={item.nome}>{item.nome}</option>
+                      ))
+                    }
+                  </select>
+                  <p>▼</p>              
                 </div>
 
               </span>
 
-              <label htmlFor="city">cidade:</label>
-              <select name="city" id="city">
-                <option value="araraquara">Araraquara</option>
-              </select>
+              <div>
+                <label htmlFor="city">cidade:</label>
+                <select name="city" id="city">
+                  <option value="araraquara">Araraquara</option>
+                </select>
+                <p>▼</p>              
+              </div>
+
 
               
             </Column2>

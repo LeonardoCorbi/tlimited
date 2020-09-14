@@ -186,11 +186,13 @@ export const NameContainer = styled.div`
 
   h1 {
     font-size: 3.6rem;
+    text-align: right;
   }
 
   h2 {
     font-size: 2.4rem;
     color: var(--green);
+    text-align: right;
   }
 `
 

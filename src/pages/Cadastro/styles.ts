@@ -71,6 +71,15 @@ export const Column2 = styled.span`
 
     font-size: 2.4rem;
     padding: 0 10px;
+
+    &::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+    }
+
+    & { 
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
   }
 
   label {
@@ -87,6 +96,8 @@ export const Column2 = styled.span`
       display: flex;
       flex-direction: column;
 
+      position: relative;
+
       input {
         width: 70%;
       }
@@ -97,7 +108,7 @@ export const Column2 = styled.span`
         -webkit-appearance: none;
 
         border: 2px solid black;
-        background: white;
+        background: transparent;
 
         font-size: 2.4rem;
 
@@ -107,24 +118,46 @@ export const Column2 = styled.span`
         padding: 0 10px;
 
         position: relative;
+      }
 
+      p {
+        position: absolute;
+        right: 8px;
+        bottom: 8px;
+
+        z-index: -10;
       }
     }
   }
 
-  select {
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
+  div {
+    display: flex;
+    flex-direction: column;
 
-    border: 2px solid black;
-    background: white;
+    position: relative;
 
-    font-size: 2.4rem;
+    select {
+      appearance: none;
+      -moz-appearance: none;
+      -webkit-appearance: none;
 
-    height: 56px;
+      border: 2px solid black;
+      background: transparent;
 
-    padding: 0 10px;
+      font-size: 2.4rem;
+
+      height: 56px;
+
+      padding: 0 10px;
+    }
+
+    p {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+
+      z-index: -10;
+    }
   }
 `
 
