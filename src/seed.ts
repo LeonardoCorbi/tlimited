@@ -85,3 +85,122 @@ export const shoes = [
   },
   
 ]
+
+export const footballBoots = [
+{ 
+  id: 1,
+  flashNumber: 768,
+  imageUrl: '../../assets/foot1.png',
+  name: 'Nike PG 4 Football Grey Plaid',
+  price: '500.00',
+},
+{ 
+  id: 2,
+  flashNumber: 256,
+  imageUrl: '../../assets/foot1.png',
+  name: 'Nike Air Max 97 Football Grey Light Thistle (W)',
+  price: '798.00',
+},
+{ 
+  id: 3,
+  flashNumber: 467,
+  imageUrl: '../../assets/foot1.png',
+  name: 'Nike Signal D/MS/X Black Football Grey',
+  price: '450.00',
+},
+{ 
+  id: 4,
+  flashNumber: 2452,
+  imageUrl: '../../assets/foot1.png',
+  name: 'Nike Air Max 270 Washed Coral Football Grey (W)',
+  price: '846.99',
+},
+{ 
+  id: 1,
+  flashNumber: 768,
+  imageUrl: '../../assets/foot1.png',
+  name: 'Nike PG 4 Football Grey Plaid',
+  price: '500.00',
+},
+{ 
+  id: 2,
+  flashNumber: 256,
+  imageUrl: '../../assets/foot1.png',
+  name: 'Nike Air Max 97 Football Grey Light Thistle (W)',
+  price: '798.00',
+},
+{ 
+  id: 3,
+  flashNumber: 467,
+  imageUrl: '../../assets/foot1.png',
+  name: 'Nike Signal D/MS/X Black Football Grey',
+  price: '450.00',
+},
+{ 
+  id: 4,
+  flashNumber: 2452,
+  imageUrl: '../../assets/foot1.png',
+  name: 'Nike Air Max 270 Washed Coral Football Grey (W)',
+  price: '846.99',
+},
+]
+
+export const sneakers = [
+{ 
+  id: 1,
+  flashNumber: 768,
+  imageUrl: '../../assets/foot1.png',
+  name: 'Jordan 1 Retro High Tokyo Bio Hack',
+  price: '1526.50',
+},
+{ 
+  id: 2,
+  flashNumber: 256,
+  imageUrl: '../../assets/foot1.png',
+  name: 'Jordan 5 Retro Alternate Bel-Air',
+  price: '1240.90',
+},
+{ 
+  id: 3,
+  flashNumber: 467,
+  imageUrl: '../../assets/foot1.png',
+  name: 'adidas Yeezy 700 V3 Arzareth',
+  price: '1862.30',
+},
+{ 
+  id: 4,
+  flashNumber: 2452,
+  imageUrl: '../../assets/foot1.png',
+  name: 'Jordan 12 Retro Black University Gold',
+  price: '1385.99',
+},
+{ 
+  id: 1,
+  flashNumber: 768,
+  imageUrl: '../../assets/foot1.png',
+  name: 'Jordan 1 Retro High Tokyo Bio Hack',
+  price: '1526.50',
+},
+{ 
+  id: 2,
+  flashNumber: 256,
+  imageUrl: '../../assets/foot1.png',
+  name: 'Jordan 5 Retro Alternate Bel-Air',
+  price: '1240.90',
+},
+{ 
+  id: 3,
+  flashNumber: 467,
+  imageUrl: '../../assets/foot1.png',
+  name: 'adidas Yeezy 700 V3 Arzareth',
+  price: '1862.30',
+},
+{ 
+  id: 4,
+  flashNumber: 2452,
+  imageUrl: '../../assets/foot1.png',
+  name: 'Jordan 12 Retro Black University Gold',
+  price: '1385.99',
+},
+
+]
