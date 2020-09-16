@@ -39,7 +39,7 @@ export const OrderBy = styled.div`
 `
 
 export const Brands = styled.div`
-  margin-top: 33px;
+  margin-top: 24px;
   position: relative;
 
   div {
@@ -87,7 +87,7 @@ export const Brands = styled.div`
 `
 
 export const SizeSelector = styled.div`
-  margin-top: 42px;
+  margin-top: 24px;
   position: relative;
   
   div {
@@ -138,7 +138,7 @@ export const SizeSelector = styled.div`
 `
 
 export const ColorSelector = styled.div`
-  margin-top: 43px;
+  margin-top: 24px;
 
   div {
     display: grid;
@@ -212,6 +212,7 @@ export const AdContainer = styled.div`
   grid-area: ad;
   position: relative;
   height: 100px;
+  margin-top: 20px;
 
   p {
     top: 111px;
@@ -220,9 +221,23 @@ export const AdContainer = styled.div`
     position: absolute;
     z-index: 9;
 
+    @media(max-width: 1550px) {
+      font-size: 4rem;
+    }
+    @media(max-width: 1110px) {
+      font-size: 2rem;
+    }
+
 
     div {
       font-size: 8rem;
+
+      @media(max-width: 1550px) {
+      font-size: 5rem;
+      }
+      @media(max-width: 1110px) {
+      font-size: 2.5rem;
+      }
 
       span {
         color: var(--green);
@@ -235,9 +250,10 @@ export const AdContainer = styled.div`
     position: absolute;
     left: -38px;
     z-index: 8;
+    max-height: 550px;
   }
 
-  &::after {
+  /* &::after {
     content: '';
     height: 50rem;
     top: 0;
@@ -247,6 +263,6 @@ export const AdContainer = styled.div`
     border: 2px solid black;
     position: absolute;
     z-index: 100;
-  }
+  } */
 
 `

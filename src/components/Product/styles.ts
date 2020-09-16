@@ -1,8 +1,5 @@
 import styled from 'styled-components';
 
-import { MdShoppingCart } from 'react-icons/md'
-
-
 export const Container = styled.form`
   display: grid;
   grid-template-rows: 40px 150px 84px 81px ;

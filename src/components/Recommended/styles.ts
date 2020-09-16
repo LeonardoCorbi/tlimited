@@ -13,8 +13,10 @@ export const Container = styled.div`
   }
 
   span {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    /* display: grid;
+    grid-template-columns: repeat(5, 1fr); */
+    display: flex;
+    flex-wrap: wrap;
     
   }
 `;

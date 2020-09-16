@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import axios from 'axios'
 
 import { 
   Container,
@@ -14,11 +15,22 @@ import {
 import Header from '../../components/Header';
 import Product from '../../components/Product';
 import Footer from '../../components/Footer';
-import { shoes } from '../../seed';
+import { shoes, footballBoots, sneakers } from '../../seed';
 import Recommended from '../../components/Recommended';
 import { Link } from 'react-router-dom';
 
 const Todos: React.FC = () => {
+
+  const getSneakers = () => {
+    axios.post('http://localhost/backend/api/item.php', {
+      valor: 10
+    })
+      .then(res => console.log(res.data))
+  }
+
+  useEffect(() => {
+    getSneakers()
+  }, [])
 
   
   return (
@@ -188,7 +200,7 @@ const Todos: React.FC = () => {
         <Products>
           
           {
-            shoes.map(item => (
+            shoes.map(item => 
               <Product 
                 id={item.id}
                 flashNumber={item.flashNumber}
@@ -196,7 +208,29 @@ const Todos: React.FC = () => {
                 name={item.name}
                 price={item.price}
               />
-            ))
+            )
+          }
+          {
+            footballBoots.map(item => 
+              <Product 
+                id={item.id}
+                flashNumber={item.flashNumber}
+                imageUrl={item.imageUrl}
+                name={item.name}
+                price={item.price}
+              />
+            )
+          } 
+          { 
+            sneakers.map(item => 
+              <Product 
+                id={item.id}
+                flashNumber={item.flashNumber}
+                imageUrl={item.imageUrl}
+                name={item.name}
+                price={item.price}
+              />
+            )
           }
 
         </Products>

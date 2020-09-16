@@ -64,8 +64,7 @@ const Product: React.FC<ShoesProps> = ({
         <span>{active ? flashNumber + 1 : flashNumber}</span>
 
         <FlashIcon
-        // onClick={handleTouchFlashIcon} 
-        onClick={() => setIsOpen(!isOpen)} 
+        onClick={handleTouchFlashIcon} 
         width="28.781" 
         height="40" 
         fill={active ? '#3DFB03' : 'white'}

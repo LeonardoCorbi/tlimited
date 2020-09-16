@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, ChangeEvent } from 'react';
 import axios from 'axios'
+import cep from 'cep-promise'
 
 import { 
   Container,
@@ -11,13 +12,45 @@ import {
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
+interface cepProps {
+  state: string
+  city: string
+  street: string
+}
+
 const Cadastro: React.FC = () => {
   const [uf, setUf] = useState([])
+  const [selectedUf, setSelectedUf] = useState('')
+  const [cityByCep, setCityByCep] = useState('')
+  const [city, setCity] = useState([])
+  const [street, setStreet] = useState('')
+  // const [cepResult, setCepResult] = useState<cepProps>({})
 
   useEffect(() => {
-    axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados/')
-      .then(uf => setUf(uf.data.nome))
+    axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados/').then(el => setUf(el.data))
   }, [])
+
+  useEffect(() => {
+    axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedUf}/municipios`).then(el => setCity(el.data))
+  }, [selectedUf])
+
+  const handleSelectUf = (event: ChangeEvent<HTMLSelectElement>) => {
+    const value = event.target.value
+
+    setSelectedUf(value)
+  }
+
+  // const handleInputCep = (event: ChangeEvent<HTMLInputElement>) => {
+  //   const value = event.target.value
+
+  //   if(value.length == 8) {
+  //     cep(value).then(el => setCepResult(el))
+  //     console.log(cepResult)
+  //     setSelectedUf(cepResult.state)
+  //     setCityByCep(cepResult.city)
+  //     setStreet(cepResult.street)
+  //   }
+  // }
 
   return (
     <Container>
@@ -52,7 +85,7 @@ const Cadastro: React.FC = () => {
               <input type="text" name="cep" id="cep"/>
 
               <label htmlFor="street">rua/avenida:</label>
-              <input type="text" name="street" id="street"/>
+              <input type="text" name="street" id="street" value={street}/>
 
               <span>
                 
@@ -63,10 +96,10 @@ const Cadastro: React.FC = () => {
 
                 <div>
                   <label htmlFor="uf">estado:</label>
-                  <select name="uf" id="uf">
+                  <select name="uf" id="uf" value={selectedUf} onChange={handleSelectUf}>
                     {
                       uf.map(item => (
-                        <option key={item.nome} value={item.nome}>{item.nome}</option>
+                        <option key={item.sigla} value={item.sigla}>{item.sigla}</option> 
                       ))
                     }
                   </select>
@@ -77,8 +110,12 @@ const Cadastro: React.FC = () => {
 
               <div>
                 <label htmlFor="city">cidade:</label>
-                <select name="city" id="city">
-                  <option value="araraquara">Araraquara</option>
+                <select name="city" id="city" value={city || cityByCep}>
+                  {
+                    city.map(item => (
+                      <option key={item.nome} value={item.nome}>{item.nome}</option>
+                    ))
+                  }
                 </select>
                 <p>▼</p>              
               </div>
