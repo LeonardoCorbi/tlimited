@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
+import path from 'path'
 
 import { motion } from 'framer-motion'
 
@@ -76,6 +77,7 @@ const Product: React.FC<ShoesProps> = ({
       
       <Link to={`/item/${id}`}>
         <img src={require(`../../assets/foot1.png`)} alt={`Imagem ${name}`}/>
+        {/* <img src={path.resolve(__dirname, '..', '..', 'assets', 'foot2.png')} alt={`Imagem ${name}`}/> */}
       </Link>
       
       <Link to={`/item/${id}`}>
