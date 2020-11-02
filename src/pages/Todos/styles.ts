@@ -35,6 +35,9 @@ export const OrderBy = styled.div`
  
   ul {
     margin-top: 6px;
+    li {
+      cursor: pointer;
+    }
   }
 `
 
@@ -169,8 +172,8 @@ export const ColorSelector = styled.div`
       background: #594E96;
     }
 
-    .reddish-purple {
-      background: #BF2F55;
+    .black {
+      background: black;
     }
 
     input {

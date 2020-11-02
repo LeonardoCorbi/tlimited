@@ -15,6 +15,8 @@ export const GlobalStyles = createGlobalStyle`
   body {
     background: white no-repeat;
     background-attachment: fixed;
+
+    overflow-x: hidden;
   }
 
   *, button {

@@ -52,6 +52,12 @@ const Cadastro: React.FC = () => {
   //   }
   // }
 
+  useEffect(() => {
+    axios.get('https://leonardocorbi.dev/php/teste.php')
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err))
+  }, [])
+
   return (
     <Container>
       <Header />

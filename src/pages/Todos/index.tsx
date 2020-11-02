@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios'
 
 import { 
@@ -20,17 +20,58 @@ import Recommended from '../../components/Recommended';
 import { Link } from 'react-router-dom';
 
 const Todos: React.FC = () => {
+  //! BUSCAR PRODUTOS
+  const [products, setProducts] = useState([])
+  const [update, setUpdate] = useState(0)
 
-  const getSneakers = () => {
-    axios.post('http://localhost/backend/api/item.php', {
-      valor: 10
-    })
-      .then(res => console.log(res.data))
+  const [brand] = useState([])
+  const [size, setSize] = useState('')
+  const [color] = useState([])
+  const [order, setOrder] = useState('ORDER BY id DESC')
+
+  const nikeRef = useRef<HTMLInputElement>(null)
+  const adidasRef = useRef<HTMLInputElement>(null)
+  const newBalanceRef = useRef<HTMLInputElement>(null)
+  const reebokRef = useRef<HTMLInputElement>(null)
+  const pumaRef = useRef<HTMLInputElement>(null)
+  const underArmorRef = useRef<HTMLInputElement>(null)
+
+  const greenRef = useRef<HTMLInputElement>(null)
+  const redRef = useRef<HTMLInputElement>(null)
+  const orangeRef = useRef<HTMLInputElement>(null)
+  const yellowRef = useRef<HTMLInputElement>(null)
+  const purpleRef = useRef<HTMLInputElement>(null)
+  const blackRef = useRef<HTMLInputElement>(null)
+
+  const marcaAdd = (el) => {
+    brand.push(el.target.value)
+    setUpdate(update + 1)
+  }
+  const marcaRemove = (el) => {
+    brand.splice(brand.indexOf(el.target.value), 1)
+    setUpdate(update - 1)
+  }
+
+  const colorAdd = (el) => {
+    color.push(el.target.value)
+    setUpdate(update + 1)
+  }
+  const colorRemove = (el) => {
+    color.splice(color.indexOf(el.target.value), 1)
+    setUpdate(update - 1)
   }
 
   useEffect(() => {
-    getSneakers()
-  }, [])
+    const getProductsFD = new FormData()
+    getProductsFD.append('brand', brand.toString())
+    getProductsFD.append('size', size)
+    getProductsFD.append('color', color.toString())
+    getProductsFD.append('order', order)
+
+    axios.post('https://leonardocorbi.dev/php/getAllProducts.php', getProductsFD)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err))
+  }, [size, update, order])
 
   
   return (
@@ -44,11 +85,11 @@ const Todos: React.FC = () => {
             <p>ORDEM</p> 
 
             <ul>
-              <li>PREFERIDOS</li>
-              <li>PROMOÇÕES</li>
-              <li>LANÇAMENTO</li>
-              <li>MAIOR PREÇO</li>
-              <li>MENOR PREÇO</li>
+              <li onClick={() => setOrder('ORDER BY flashlikes DESC')}>PREFERIDOS</li>
+              <li onClick={() => setOrder('ORDER BY promocao DESC')}>PROMOÇÕES</li>
+              <li onClick={() => setOrder('ORDER BY id DESC')}>LANÇAMENTO</li>
+              <li onClick={() => setOrder('ORDER BY valor DESC')}>MAIOR PREÇO</li>
+              <li onClick={() => setOrder('ORDER BY valor ASC')}>MENOR PREÇO</li>
             </ul>
 
           </OrderBy>
@@ -61,42 +102,84 @@ const Todos: React.FC = () => {
 
               <span>
 
-                <input type="checkbox" name="brands" id="brands" />
+                <input
+                  onClick={el => nikeRef.current.checked ? marcaAdd(el): marcaRemove(el)}
+                  type="checkbox" 
+                  name="brands" 
+                  id="brands"
+                  value="Nike"
+                  ref={nikeRef}
+               />
                 <img src={require('../../assets/icons/nikeIcon.svg')} alt="NikeIcon"/>
 
               </span>
 
               <span>
 
-                <input type="checkbox" name="brands" id="brands"/>
+                <input
+                  onClick={el => adidasRef.current.checked ? marcaAdd(el): marcaRemove(el)}
+                  type="checkbox" 
+                  name="brands" 
+                  id="brands"
+                  value="Adidas"
+                  ref={adidasRef}
+                />
                 <img src={require('../../assets/icons/adidasIcon.png')} alt="adidasIcon"/>
 
               </span>
 
               <span>
 
-                <input type="checkbox" name="brands" id="brands"/>
+                <input
+                  onClick={el => newBalanceRef.current.checked ? marcaAdd(el): marcaRemove(el)}
+                  type="checkbox" 
+                  name="brands" 
+                  id="brands"
+                  value="New Balance"
+                  ref={newBalanceRef}
+                />
                 <img src={require('../../assets/icons/newBalanceIcon.png')} alt="newBalanceIcon"/>
 
               </span>
 
               <span>
 
-                <input type="checkbox" name="brands" id="brands"/>
+                <input
+                  onClick={el => reebokRef.current.checked ? marcaAdd(el): marcaRemove(el)}
+                  type="checkbox" 
+                  name="brands" 
+                  id="brands"
+                  value="Reebok"
+                  ref={reebokRef}
+                />
                 <img src={require('../../assets/icons/reebokIcon.png')} alt="reebokIcon"/>
 
               </span>
 
               <span>
 
-                <input type="checkbox" name="brands" id="brands"/>
+                <input
+                  onClick={el => pumaRef.current.checked ? marcaAdd(el): marcaRemove(el)}
+                  type="checkbox" 
+                  name="brands" 
+                  id="brands"
+                  value="Puma"
+                  ref={pumaRef}
+                />
                 <img src={require('../../assets/icons/pumaIcon.png')} alt="pumaIcon"/>
 
               </span>
 
               <span>
 
-                <input type="checkbox" name="brands" id="brands"/>
+                <input
+                  onClick={el => underArmorRef.current.checked ? marcaAdd(el): marcaRemove(el)}
+                  type="checkbox" 
+                  name="brands" 
+                  id="brands"
+                  value="Under Armor"
+                  ref={underArmorRef}
+                />
                 <img src={require('../../assets/icons/underArmorIcon.png')} alt="underArmorIcon"/>
 
               </span>
@@ -113,63 +196,117 @@ const Todos: React.FC = () => {
 
               <span>
 
-                <input type="radio" name="size" id="size" value="36"/>
+                <input
+                  onChange={el => setSize(el.target.value)} 
+                  type="radio" 
+                  name="size" 
+                  id="size" 
+                  value="36"
+                />
                 <p>36</p>
                 
               </span>
 
               <span>
 
-                <input type="radio" name="size" id="size" value="37"/>
+                <input
+                  onChange={el => setSize(el.target.value)} 
+                  type="radio" 
+                  name="size" 
+                  id="size" 
+                  value="37"
+                />
                 <p>37</p>
                 
               </span>
 
               <span>
 
-                <input type="radio" name="size" id="size" value="38"/>
+                <input
+                  onChange={el => setSize(el.target.value)} 
+                  type="radio" 
+                  name="size" 
+                  id="size" 
+                  value="38"
+                />
                 <p>38</p>
                 
               </span>
 
               <span>
 
-                <input type="radio" name="size" id="size" value="39"/>
+                <input
+                  onChange={el => setSize(el.target.value)} 
+                  type="radio" 
+                  name="size" 
+                  id="size" 
+                  value="39"
+                />
                 <p>39</p>
                 
               </span>
 
               <span>
 
-                <input type="radio" name="size" id="size" value="40"/>
+                <input
+                  onChange={el => setSize(el.target.value)} 
+                  type="radio" 
+                  name="size" 
+                  id="size" 
+                  value="40"
+                />
                 <p>40</p>
                 
               </span>
 
               <span>
 
-                <input type="radio" name="size" id="size" value="41"/>
+                <input
+                  onChange={el => setSize(el.target.value)} 
+                  type="radio" 
+                  name="size" 
+                  id="size" 
+                  value="41"
+                />
                 <p>41</p>
                 
               </span>
 
               <span>
 
-                <input type="radio" name="size" id="size" value="42"/>
+                <input
+                  onChange={el => setSize(el.target.value)} 
+                  type="radio" 
+                  name="size" 
+                  id="size" 
+                  value="42"
+                />
                 <p>42</p>
                 
               </span>
 
               <span>
 
-                <input type="radio" name="size" id="size" value="43"/>
+                <input
+                  onChange={el => setSize(el.target.value)} 
+                  type="radio" 
+                  name="size" 
+                  id="size" 
+                  value="43"
+                />
                 <p>43</p>
                 
               </span>
 
               <span>
 
-                <input type="radio" name="size" id="size" value="44"/>
+                <input
+                  onChange={el => setSize(el.target.value)} 
+                  type="radio" 
+                  name="size" 
+                  id="size" 
+                  value="44"
+                />
                 <p>44</p>
                 
               </span>
@@ -184,12 +321,48 @@ const Todos: React.FC = () => {
 
             <div>
 
-              <input type="checkbox" className="green" name="green" id="green"/>
-              <input type="checkbox" className="red" name="red" id="red"/>
-              <input type="checkbox" className="orange" name="orange" id="orange"/>
-              <input type="checkbox" className="yellow" name="yellow" id="yellow"/>
-              <input type="checkbox" className="purple" name="purple" id="purple"/>
-              <input type="checkbox" className="reddish-purple" name="reddish-purple" id="reddish-purple"/>
+              <input
+                value="verde" 
+                type="checkbox" 
+                className="green"
+                onClick={el => greenRef.current.checked ? colorAdd(el) : colorRemove(el)} 
+                ref={greenRef}
+              />
+              <input
+                value="vermelho" 
+                type="checkbox" 
+                className="red"
+                onClick={el => redRef.current.checked ? colorAdd(el) : colorRemove(el)} 
+                ref={redRef}
+              />
+              <input
+                value="laranja" 
+                type="checkbox" 
+                className="orange"
+                onClick={el => orangeRef.current.checked ? colorAdd(el) : colorRemove(el)} 
+                ref={orangeRef}
+              />
+              <input
+                value="amarelo" 
+                type="checkbox" 
+                className="yellow"
+                onClick={el => yellowRef.current.checked ? colorAdd(el) : colorRemove(el)} 
+                ref={yellowRef}
+              />
+              <input
+                value="roxo" 
+                type="checkbox" 
+                className="purple"
+                onClick={el => purpleRef.current.checked ? colorAdd(el) : colorRemove(el)} 
+                ref={purpleRef}
+              />
+              <input
+                value="preto" 
+                type="checkbox" 
+                className="black"
+                onClick={el => blackRef.current.checked ? colorAdd(el) : colorRemove(el)} 
+                ref={blackRef}
+              />
             
             </div>
             
@@ -198,6 +371,18 @@ const Todos: React.FC = () => {
         </LeftColumn>
 
         <Products>
+          {
+            // products.map(prod => (
+            //   <Product 
+            //     id={prod.id}
+            //     flashNumber={prod.flashlikes}
+            //     imageUrl={prod.imagem}
+            //     name={prod.nome}
+            //     price={prod.valor}
+            //     key={prod.id}
+            //   />
+            // ))
+          }
           
           {
             shoes.map(item => 
