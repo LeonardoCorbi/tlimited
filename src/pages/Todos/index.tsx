@@ -15,20 +15,18 @@ import {
 import Header from '../../components/Header';
 import Product from '../../components/Product';
 import Footer from '../../components/Footer';
-import { shoes, footballBoots, sneakers } from '../../seed';
+// import { shoes, footballBoots, sneakers } from '../../seed';
 import Recommended from '../../components/Recommended';
-import { Link } from 'react-router-dom';
 
 const Todos: React.FC = () => {
   //! BUSCAR PRODUTOS
-  const [products, setProducts] = useState([])
   const [update, setUpdate] = useState(0)
-
+  
   const [brand] = useState([])
   const [size, setSize] = useState('')
   const [color] = useState([])
-  const [order, setOrder] = useState('ORDER BY id DESC')
-
+  const [order, setOrder] = useState('ORDER BY itens.id DESC')
+  
   const nikeRef = useRef<HTMLInputElement>(null)
   const adidasRef = useRef<HTMLInputElement>(null)
   const newBalanceRef = useRef<HTMLInputElement>(null)
@@ -42,7 +40,7 @@ const Todos: React.FC = () => {
   const yellowRef = useRef<HTMLInputElement>(null)
   const purpleRef = useRef<HTMLInputElement>(null)
   const blackRef = useRef<HTMLInputElement>(null)
-
+  
   const marcaAdd = (el) => {
     brand.push(el.target.value)
     setUpdate(update + 1)
@@ -51,7 +49,7 @@ const Todos: React.FC = () => {
     brand.splice(brand.indexOf(el.target.value), 1)
     setUpdate(update - 1)
   }
-
+  
   const colorAdd = (el) => {
     color.push(el.target.value)
     setUpdate(update + 1)
@@ -60,19 +58,20 @@ const Todos: React.FC = () => {
     color.splice(color.indexOf(el.target.value), 1)
     setUpdate(update - 1)
   }
-
+  
+  const [products, setProducts] = useState([])
   useEffect(() => {
     const getProductsFD = new FormData()
     getProductsFD.append('brand', brand.toString())
     getProductsFD.append('size', size)
     getProductsFD.append('color', color.toString())
     getProductsFD.append('order', order)
-
+    
     axios.post('https://leonardocorbi.dev/php/getAllProducts.php', getProductsFD)
-      .then(res => console.log(res.data))
+      .then(res => setProducts(res.data))
       .catch(err => console.log(err))
   }, [size, update, order])
-
+  
   
   return (
     <Container>
@@ -85,11 +84,11 @@ const Todos: React.FC = () => {
             <p>ORDEM</p> 
 
             <ul>
-              <li onClick={() => setOrder('ORDER BY flashlikes DESC')}>PREFERIDOS</li>
-              <li onClick={() => setOrder('ORDER BY promocao DESC')}>PROMOÇÕES</li>
-              <li onClick={() => setOrder('ORDER BY id DESC')}>LANÇAMENTO</li>
-              <li onClick={() => setOrder('ORDER BY valor DESC')}>MAIOR PREÇO</li>
-              <li onClick={() => setOrder('ORDER BY valor ASC')}>MENOR PREÇO</li>
+              <li onClick={() => setOrder('ORDER BY itens.flashlikes DESC')}>PREFERIDOS</li>
+              <li onClick={() => setOrder('ORDER BY itens.promocao DESC')}>PROMOÇÕES</li>
+              <li onClick={() => setOrder('ORDER BY itens.id DESC')}>LANÇAMENTO</li>
+              <li onClick={() => setOrder('ORDER BY itens.valor DESC')}>MAIOR PREÇO</li>
+              <li onClick={() => setOrder('ORDER BY itens.valor ASC')}>MENOR PREÇO</li>
             </ul>
 
           </OrderBy>
@@ -372,50 +371,50 @@ const Todos: React.FC = () => {
 
         <Products>
           {
-            // products.map(prod => (
-            //   <Product 
-            //     id={prod.id}
-            //     flashNumber={prod.flashlikes}
-            //     imageUrl={prod.imagem}
-            //     name={prod.nome}
-            //     price={prod.valor}
-            //     key={prod.id}
-            //   />
-            // ))
+            products.map(prod => (
+              <Product 
+                id={prod.id}
+                flashNumber={prod.flashlikes}
+                imageUrl={prod.imagem}
+                name={prod.nome}
+                price={prod.valor}
+                key={prod.id}
+              />
+            ))
           }
           
           {
-            shoes.map(item => 
-              <Product 
-                id={item.id}
-                flashNumber={item.flashNumber}
-                imageUrl={item.imageUrl}
-                name={item.name}
-                price={item.price}
-              />
-            )
+            // shoes.map(item => 
+            //   <Product 
+            //     id={item.id}
+            //     flashNumber={item.flashNumber}
+            //     imageUrl={item.imageUrl}
+            //     name={item.name}
+            //     price={item.price}
+            //   />
+            // )
           }
           {
-            footballBoots.map(item => 
-              <Product 
-                id={item.id}
-                flashNumber={item.flashNumber}
-                imageUrl={item.imageUrl}
-                name={item.name}
-                price={item.price}
-              />
-            )
+            // footballBoots.map(item => 
+            //   <Product 
+            //     id={item.id}
+            //     flashNumber={item.flashNumber}
+            //     imageUrl={item.imageUrl}
+            //     name={item.name}
+            //     price={item.price}
+            //   />
+            // )
           } 
           { 
-            sneakers.map(item => 
-              <Product 
-                id={item.id}
-                flashNumber={item.flashNumber}
-                imageUrl={item.imageUrl}
-                name={item.name}
-                price={item.price}
-              />
-            )
+            // sneakers.map(item => 
+            //   <Product 
+            //     id={item.id}
+            //     flashNumber={item.flashNumber}
+            //     imageUrl={item.imageUrl}
+            //     name={item.name}
+            //     price={item.price}
+            //   />
+            // )
           }
 
         </Products>
