@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
+import axios from 'axios'
+import Carousel from 'react-elastic-carousel'
 
 import { 
   Container, 
@@ -8,7 +10,6 @@ import {
   ShoesImagePlace,
   FlashContainer,
   FlashIcon,
-  Indicator,
   OrderFunctionPlace,
   OrderFormWrapper,
   NameContainer,
@@ -25,79 +26,52 @@ import flashIcon from '../../assets/icons/flashIcon.svg'
 import Header from '../../components/Header';
 import Recommended from '../../components/Recommended';
 import Footer from '../../components/Footer';
-import { shoes } from '../../seed';
 
 interface matchProps {
   match: {
     params: {
-      id: number
+      id: any
     }
   }
 }
 
-interface itemsProps {
-  id: number
-  flashNumber: number
-  name: string
-  price: string
-}
-
 const Item: React.FC<matchProps> = ({ match }) => {
   const [amount, setAmount] = useState(1)
-  const galleryRef = useRef<HTMLDivElement>(null)
 
-  const firstImgCheckRef = useRef<HTMLInputElement>(null)
-
-  const [item, setItems] = useState({} as itemsProps)
+  const [productInfo, setProductInfo] = useState([])
+  const [productImages, setProductImages] = useState([])
+  const [productUnidades, setProductUnidades] = useState([])
 
   useEffect(() => {
-    const data = shoes.find(shoe => shoe.id == match.params.id)
+    const productFD = new FormData()
+    productFD.append('id', match.params.id)
 
-    console.log(data)
-
-    setItems(data)
-
-    firstImgCheckRef.current.focus()
-
+    axios.post('https://leonardocorbi.dev/php/getEspecificProductInfo.php', productFD)
+      .then(res => setProductInfo(res.data))
+      .catch(err => console.log(err))
+    
+    axios.post('https://leonardocorbi.dev/php/getEspecificProductImages.php', productFD)
+      .then(res => setProductImages(res.data))
+      .catch(err => console.log(err))
+    
+    axios.post('https://leonardocorbi.dev/php/getEspecificProductUnidades.php', productFD)
+      .then(res => setProductUnidades(res.data))
+      .catch(err => console.log(err))
   }, [match.params.id])
 
   const handleRemoveBtn = () => {
-    if(amount !== 1){
+    if(amount !== 1 ){
       setAmount(amount - 1)
     }
   }
 
   const handleAddBtn = () => {
-    setAmount(amount + 1)
+    if(amount <= Number(productUnidades.map(prod => prod.tamanho == tamanhoSelected ? prod.quantidade : undefined))){
+      setAmount(amount + 1)
+    }
   }
 
-  const handleImg1 = () => {
-    galleryRef.current.scrollTo({
-      left: 0, 
-      behavior:"smooth"
-    })
-  }
-
-  const handleImg2 = () => {
-    galleryRef.current.scrollTo({
-      left: 1300, 
-      behavior:"smooth"
-    })
-  }
-
-  const handleImg3 = () => {
-    galleryRef.current.scrollTo({
-      left: 2200, 
-      behavior:"smooth"
-    })
-  }
-
-  const handleImg4 = () => {
-    galleryRef.current.scrollTo({
-      left: 5000, 
-      behavior:"smooth"
-    })
-  }
+  const [tamanhoSelected, setTamanhoSelected] = useState(1)
 
   return (
     <Container>
@@ -110,17 +84,17 @@ const Item: React.FC<matchProps> = ({ match }) => {
         
           <h2>história e material</h2>
         
-          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet.</p>
+          <p>{productInfo.map(prod => prod.descricao)}</p>
         
           <DesignerInfo>
 
             <span>
-              <img src={require('../../assets/designer1.png')} alt="img"/>
+              <img src={`${productInfo.map(prod => prod.designer_imagem)}`} alt="img"/>
             </span>
 
             <div>
-              <h2>MAIA VOLPATO</h2>
-              <p>NIKE PRODUCT DESIGNER</p>
+              <h2>{productInfo.map(prod => prod.designer_nome)}</h2>
+              <p>{productInfo.map(prod => prod.designer_funcao)}</p>
             </div>
 
           </DesignerInfo>
@@ -130,7 +104,7 @@ const Item: React.FC<matchProps> = ({ match }) => {
 
           <FlashContainer>
 
-            <span>{item.flashNumber}</span>
+            <span>{productInfo.map(prod => prod.flashlikes)}</span>
             <span> flaslikes </span>
             <FlashIcon 
             width="28.781" 
@@ -143,28 +117,15 @@ const Item: React.FC<matchProps> = ({ match }) => {
 
           <Gallery>
 
-            <div ref={galleryRef}>
-
-              <img src={require('../../assets/shoe1.png')} alt="shoe"/>
-              <img src={require('../../assets/shoe2.png')} alt="shoe"/>
-              <img src={require('../../assets/shoe3.png')} alt="shoe"/>
-              <img src={require('../../assets/shoe4.png')} alt="shoe"/>
-
-            </div>
+            <Carousel showArrows={false}>
+            {
+              productImages.map(imageURL => (
+                <img src={`${imageURL}`} alt={`${productInfo.map(prod => prod.nome)}`}/>
+              ))
+            }
+            </Carousel>
 
           </Gallery>
-
-          <Indicator>
-
-            <input ref={firstImgCheckRef} onFocus={handleImg1} type="radio" name="radio" id="1"/>
-
-            <input onFocus={handleImg2} type="radio" name="radio" id="2"/>
-
-            <input onFocus={handleImg3} type="radio" name="radio" id="3"/>
-
-            <input onFocus={handleImg4} type="radio" name="radio" id="4"/>
-
-          </Indicator>
 
         </ShoesImagePlace>
 
@@ -173,7 +134,7 @@ const Item: React.FC<matchProps> = ({ match }) => {
           <OrderFormWrapper>
             
             <NameContainer>
-              <h1>{item.name}</h1>
+              <h1>{productInfo.map(prod => prod.nome)}</h1>
               <h2>EDIÇÃO LIMITADA</h2>
             </NameContainer>
             
@@ -183,48 +144,28 @@ const Item: React.FC<matchProps> = ({ match }) => {
 
               <div className="organizer">
 
-                <div className="radioWrapper">
+                {
+                  productUnidades.map(prod => (
+                    <div className="radioWrapper">
 
-                  <input type="radio" name="size" value="36" />
-                  <span>36</span>
+                      <input 
+                        type="radio" 
+                        name="size" 
+                        onFocus={el => setTamanhoSelected(Number(el.target.value))}
+                        value={prod.tamanho} />
+                      <span>{prod.tamanho}</span>
 
-                </div>
-
-                <div className="radioWrapper">
-
-                  <input type="radio" name="size" value="37"/>
-                  <span>37</span>
-
-                </div>
-
-                <div className="radioWrapper">
-
-                  <input type="radio" name="size" value="38"/>
-                  <span>38</span>
-
-                </div>
-
-                <div className="radioWrapper">
-
-                  <input type="radio" name="size" value="39"/>
-                  <span>39</span>
-
-                </div>
-
-                <div className="radioWrapper">
-
-                  <input type="radio" name="size" value="40"/>
-                  <span>40</span>
-
-                </div>
+                    </div>
+                  ))
+                }
 
               </div>
               
             </SizeContainer>
 
             <PriceContainer>
-              <h1>R${item.price}</h1>
-              <p>ou 5x de {(Number(item.price) / 5).toFixed(2)}</p>
+              <h1>R${productInfo.map(prod => prod.valor)}</h1>
+              <p>ou 5x de {(Number(productInfo.map(prod => prod.valor)) / 5).toFixed(2)}</p>
               <p>FRETE GRÁTIS</p>
             </PriceContainer>
 
@@ -247,7 +188,12 @@ const Item: React.FC<matchProps> = ({ match }) => {
 
               </div>
 
-              <p className="unities">SOMENTE 6 UNIDADES</p>
+              <p className="unities">
+                
+                SOMENTE {
+                  productUnidades.map(prod => prod.tamanho == tamanhoSelected ? prod.quantidade : undefined)
+                } UNIDADES
+              </p>
             </AmountContainer>
 
             <BuyButton type="submit">

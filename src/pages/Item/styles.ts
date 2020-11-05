@@ -39,6 +39,10 @@ export const DesignerInfo = styled.div`
   margin-left: 13px;
 
   span {
+    max-width: 103px;
+    max-height: 111px;
+
+    overflow: hidden;
 
     &::before {
       height: 111px;
@@ -56,7 +60,8 @@ export const DesignerInfo = styled.div`
 
     img {
       height: 111px;
-      z-index: 6;
+
+      transform: translateX(-50%);
     } 
   
   }
@@ -121,26 +126,30 @@ export const Gallery = styled.div`
   margin: 0;
   padding: 0;
 
-  div {
-    display: flex;
-    overflow-x: auto;
+  .rec-slider-container {
+    margin:0;
+    padding: 0;
 
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-
-    img {
-      flex: none;
-      
-      width: 100%;
-      height: 100%;
-
-      scroll-snap-align: start;
-    }
+    width: 100%;
   }
+
+  .rec-dot {
+    border-radius: 0;
+    border: 2px solid black;
+    
+    background: black;
+    
+    box-shadow: none;
+
+    width: 36px;
+    height: 16px;
+  }
+  .rec-dot_active {
+    background: var(--green);
+
+    width: 72px;
+  }
+  
 `
 
 export const Indicator = styled.form`

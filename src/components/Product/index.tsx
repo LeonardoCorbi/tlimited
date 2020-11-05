@@ -75,9 +75,8 @@ const Product: React.FC<ShoesProps> = ({
 
       </div>
       
-      <Link to={`/item/${id}`}>
+      <Link to={`/produto/${id}`}>
         <img src={`${imageUrl}`} alt={`Imagem ${name}`}/>
-        {/* <img src={path.resolve(__dirname, '..', '..', 'assets', 'foot2.png')} alt={`Imagem ${name}`}/> */}
       </Link>
       
       <Link to={`/item/${id}`}>
