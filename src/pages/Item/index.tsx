@@ -65,13 +65,11 @@ const Item: React.FC<matchProps> = ({ match }) => {
     }
   }
 
-  const handleAddBtn = () => {
-    if(amount <= Number(productUnidades.map(prod => prod.tamanho == tamanhoSelected ? prod.quantidade : undefined))){
-      setAmount(amount + 1)
-    }
+  function handleAddBtn() {
+    setAmount(amount + 1)
   }
 
-  const [tamanhoSelected, setTamanhoSelected] = useState(1)
+  const [tamanhoSelected, setTamanhoSelected] = useState(0)
 
   return (
     <Container>
@@ -151,7 +149,10 @@ const Item: React.FC<matchProps> = ({ match }) => {
                       <input 
                         type="radio" 
                         name="size" 
-                        onFocus={el => setTamanhoSelected(Number(el.target.value))}
+                        onFocus={el => {
+                          setTamanhoSelected(Number(el.target.value))
+                          setAmount(1)
+                        }}
                         value={prod.tamanho} />
                       <span>{prod.tamanho}</span>
 
@@ -164,7 +165,7 @@ const Item: React.FC<matchProps> = ({ match }) => {
             </SizeContainer>
 
             <PriceContainer>
-              <h1>R${productInfo.map(prod => prod.valor)}</h1>
+              <h1>R${Number(productInfo.map(prod => prod.valor)).toFixed(2)}</h1>
               <p>ou 5x de {(Number(productInfo.map(prod => prod.valor)) / 5).toFixed(2)}</p>
               <p>FRETE GRÁTIS</p>
             </PriceContainer>
@@ -179,7 +180,7 @@ const Item: React.FC<matchProps> = ({ match }) => {
                   </svg>
                 </span>
                 <p>{amount}</p>
-                <span onClick={handleAddBtn}>
+                <span onClick={() => !tamanhoSelected ? undefined : amount < (productUnidades.find(prod => prod.tamanho == tamanhoSelected).quantidade) ? handleAddBtn() : undefined }>
                   <svg>
                     <line x1="0" y1="8" x2="16" y2="8" />                  
                     <line x1="8" y1="16" x2="8" y2="0" />                  
@@ -189,10 +190,15 @@ const Item: React.FC<matchProps> = ({ match }) => {
               </div>
 
               <p className="unities">
-                
-                SOMENTE {
-                  productUnidades.map(prod => prod.tamanho == tamanhoSelected ? prod.quantidade : undefined)
-                } UNIDADES
+                {
+                  tamanhoSelected
+                    ? (
+                      <>
+                        SOMENTE {productUnidades.map(prod => prod.tamanho == tamanhoSelected ? prod.quantidade : undefined)} UNIDADES
+                      </>
+                    )
+                    : undefined               
+                }
               </p>
             </AmountContainer>
 

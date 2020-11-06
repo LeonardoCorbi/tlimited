@@ -88,7 +88,7 @@ export const SearchContainer = styled.div`
 
   input {
     position: absolute;
-    left: 50px;
+    left: 100px;
     z-index: 10;
     outline: 0;
     border: 2px solid black;

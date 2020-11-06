@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom'
 
 import flashIcon from '../../assets/icons/flashIcon.svg'
@@ -26,6 +26,11 @@ const Header: React.FC<PageColorProps> = ({
   chuteiras,
   sneakers
 }) => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   const [visible, setVisible] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   

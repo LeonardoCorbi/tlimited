@@ -75,11 +75,11 @@ const Product: React.FC<ShoesProps> = ({
 
       </div>
       
-      <Link to={`/produto/${id}`}>
+      <Link to={`/produto/${name.replace(/\s+/g, '-').toLowerCase()}/${id}`}>
         <img src={`${imageUrl}`} alt={`Imagem ${name}`}/>
       </Link>
       
-      <Link to={`/item/${id}`}>
+      <Link to={`/produto/${name.replace(/\s+/g, '-').toLowerCase()}/${id}`}>
         <p>{name}</p>
       </Link>
       <span className="order">

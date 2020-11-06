@@ -3,37 +3,39 @@ header('Access-Control-Allow-Origin: *');
 
 $con = mysqli_connect('162.241.2.213', 'gabr5590', '4hvfM342zI', 'gabr5590_tlimited');
 
-$andBrand = null;
+$orBrand = null;
 $andSize = null;
-$andColor = null;
+$orColor = null;
 
 $brand = null;
 $size = null;
 $color = null;
 $order = $_POST['order'];
 
+$string = $_POST['string'];
+
 if($_POST['brand']) {
   $arrayBrand = explode(',', $_POST['brand']);
   $arrayToString = implode('" OR marca = "',$arrayBrand);
   $brand = 'marca = "'.$arrayToString.'"';
-  $andBrand = 'AND';
+  $orBrand = 'OR';
 }
 
 if($_POST['size']) {
   $size = 'tamanho = '.$_POST['size'];
-  $andSize = 'AND';
+  $orSize = 'AND';
 }
 
 if($_POST['color']) {
   $arrayColor = explode(',', $_POST['color']);
   $arrayToString = implode('" OR cor = "',$arrayColor);
   $color = 'cor = "'.$arrayToString.'"';
-  $andColor = 'AND';
+  $orColor = 'OR';
 }
 if(!$size) {
-  $query = "SELECT * FROM itens INNER JOIN imagens ON itens.id = imagens.id_produto WHERE imagens.thumb = 1 $andBrand $brand $andSize $size $andColor $color $order";
+  $query = "SELECT * FROM itens INNER JOIN imagens ON itens.id = imagens.id_produto WHERE itens.nome LIKE '%$string%' $orBrand $brand $orSize $size $orColor $color AND imagens.thumb = 1 $order";
 } else {
-  $query = "SELECT * FROM itens INNER JOIN imagens ON itens.id = imagens.id_produto INNER JOIN unidades ON itens.id = unidades.id_produto WHERE imagens.thumb = 1 $andBrand $brand $andSize $size $andColor $color $order";
+  $query = "SELECT * FROM itens INNER JOIN imagens ON itens.id = imagens.id_produto INNER JOIN unidades ON itens.id = unidades.id_produto WHERE itens.nome LIKE '%$string%' $orBrand $brand $andSize $size $orColor $color AND imagens.thumb = 1 $order";
 }
 
 $result = mysqli_query($con, $query);
@@ -61,8 +63,6 @@ while($data = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
     'imagem' => $data['imagem']
   );
 }
-
 echo json_encode($product);
 // echo $query;
-//! ERRO -> SELECT * FROM itens INNER JOIN imagens ON itens.id = imagens.id_produto INNER JOIN unidades ON itens.id = unidades.id_produto WHERE imagens.thumb = 1 AND marca = "Nike" OR marca = "Puma" OR marca = "Under Armor" AND unidades.tamanho = 44 ORDER BY itens.id DESC
 ?>

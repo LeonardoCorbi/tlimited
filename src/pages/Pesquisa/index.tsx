@@ -15,10 +15,17 @@ import {
 import Header from '../../components/Header';
 import Product from '../../components/Product';
 import Footer from '../../components/Footer';
-// import { shoes, footballBoots, sneakers } from '../../seed';
 import Recommended from '../../components/Recommended';
 
-const Todos: React.FC = () => {
+interface MatchProps {
+  match: {
+    params: {
+      query: any
+    }
+  }
+}
+
+const Pesquisa: React.FC<MatchProps> = ({match}) => {
   const [orderSelected, setOrderSelected] = useState('preferidos')
 
   //! BUSCAR PRODUTOS
@@ -64,12 +71,13 @@ const Todos: React.FC = () => {
   const [products, setProducts] = useState([])
   useEffect(() => {
     const getProductsFD = new FormData()
+    getProductsFD.append('string', match.params.query)
     getProductsFD.append('brand', brand.toString())
     getProductsFD.append('size', size)
     getProductsFD.append('color', color.toString())
     getProductsFD.append('order', order)
     
-    axios.post('https://leonardocorbi.dev/php/getAllProducts.php', getProductsFD)
+    axios.post('https://leonardocorbi.dev/php/getSearch.php', getProductsFD)
       .then(res => setProducts(res.data))
       .catch(err => console.log(err))
   }, [size, update, order])
@@ -413,16 +421,20 @@ const Todos: React.FC = () => {
 
         <Products>
           {
-            products.map(prod => (
-              <Product 
-                id={prod.id}
-                flashNumber={prod.flashlikes}
-                imageUrl={prod.imagem}
-                name={prod.nome}
-                price={prod.valor}
-                key={prod.id}
-              />
-            ))
+            products.length > 0
+              ? (
+                  products.map(prod => (
+                    <Product 
+                      id={prod.id}
+                      flashNumber={prod.flashlikes}
+                      imageUrl={prod.imagem}
+                      name={prod.nome}
+                      price={prod.valor}
+                      key={prod.id}
+                    />
+                  ))
+              )
+              : <p>Não tem</p>
           }
         </Products>
   
@@ -447,4 +459,4 @@ const Todos: React.FC = () => {
   );
 };
 
-export default Todos;
+export default Pesquisa;

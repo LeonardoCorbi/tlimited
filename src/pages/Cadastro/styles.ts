@@ -166,13 +166,73 @@ export const Column3 = styled.span`
   flex-direction: column;
 
   width: 27%;
+
+  margin-top: 16px;
+  div {
+    display: flex;
+    flex-direction: row;
+
+    margin-top: 38px;
+    margin-bottom: 29px;
+    
+    .imgContainer {
+      width: 170px;
+      height: 170px;
+      position: relative;
+    
+      &::before {
+        height: 170px;
+        width: 170px;
+        content: '';
+        position: absolute;
+        z-index: -5;
+        border: 2px solid var(--green);
+        top: 13px;
+        right: 13px;
+        bottom: -13px;
+        left: -13px;
+      }
+    }
+
+    span + span{
+      display: flex;
+      flex-direction: column;
+
+      margin-left: 30px;
+      input[type='file'] {
+        display: none;
+      }
+    }
+  }
+
+
+  img {
+    width: 170px;
+    height: 170px;
+    position: relative;
+
+  }
   
   input {
     height: 56px;
   }
 
-  label {
+  .avatarbtn {
+    width: 176px;
+    height: 80px;
+
+    text-align: center;
+    font-size: 24px;
+
+    border: 2px solid black;
+
     margin-top: 16px;
+    
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   button {

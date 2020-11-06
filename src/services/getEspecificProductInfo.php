@@ -12,6 +12,8 @@ $result = mysqli_query($con, $query);
 $productInfo = Array();
 
 while($data = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+  $brlValue = $data['valor'] * 6;
+
   $productInfo[] = Array(
     'id' => $data['id'],
     'promocao' => $data['promocao'],
@@ -20,7 +22,7 @@ while($data = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
     'descricao' => html_entity_decode($data['descricao']),
     'categoria' => $data['categoria'],
     'flashlikes' => $data['flashlikes'],
-    'valor' => $data['valor'],
+    'valor' => $brlValue,
     'edicao' => $data['edicao'],
     'cor' => $data['cor'],
     'designer_nome' => $data['designer_nome'],

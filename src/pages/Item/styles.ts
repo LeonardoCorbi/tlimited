@@ -151,35 +151,6 @@ export const Gallery = styled.div`
   }
   
 `
-
-export const Indicator = styled.form`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-  width: 210px;
-
-  margin: 0 auto;
-
-  input {
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-
-    border: 2px solid black;
-    width: 36px;
-    height: 16px;
-    background: black;
-
-    transition: all 200ms ease-in-out;
-
-    &:checked, &:focus {
-      width: 72px;
-      background: var(--green);
-    }
-  }
-`
-
 export const OrderFunctionPlace = styled.div`
   grid-area: OrderFunctionPlace;
 `
@@ -358,6 +329,8 @@ export const BuyButton = styled.button`
   border: 2px solid black;
 
   padding: 22px 16px;
+
+  cursor: pointer;
 
   span {
     font-size: 3.6rem;
