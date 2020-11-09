@@ -216,6 +216,15 @@ export const Products = styled.article`
   display: flex;
   flex-wrap: wrap;
 
+  .img {
+    position: absolute;
+    
+    transform: translate(-50%, -50%);
+
+    top: 50%;
+    left: 50%;
+  }
+
 `
 
 export const AdContainer = styled.div`

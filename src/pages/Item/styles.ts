@@ -206,6 +206,8 @@ export const SizeContainer = styled.div`
 
     border: 2px solid black;
 
+    user-select: none;
+
     input {
       position: absolute;
       appearance: none;
@@ -304,6 +306,8 @@ export const AmountContainer = styled.div`
       width: 56px;
       max-height: 50px;
       cursor: default;
+
+      user-select: none;
     }
   }
 
@@ -311,6 +315,8 @@ export const AmountContainer = styled.div`
     margin-top: 12px;
     font-size: 1.6rem;
     color: var(--green);
+
+    user-select: none;
   }
 `
 

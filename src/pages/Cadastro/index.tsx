@@ -6,7 +6,9 @@ import {
   Column1,
   Column2,
   Column3,
-  Content, 
+  Content,
+  ModalError,
+  BlackBackgroud, 
 } from './styles';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -18,6 +20,8 @@ interface cepProps {
 }
 
 const Cadastro: React.FC = () => {
+  const [error, setError] = useState(false)
+  
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [cpf, setCpf] = useState('')
@@ -32,7 +36,8 @@ const Cadastro: React.FC = () => {
   const [city, setCity] = useState([])
 
   const [password, setPassword] = useState('')
-  const [avatar, setAvatar] = useState('')
+  const [avatar, setAvatar] = useState([])
+  const [preview, setPreview] = useState('')
 
   
   useEffect(() => {
@@ -54,15 +59,16 @@ const Cadastro: React.FC = () => {
     const value = event.target.value
     setSelectedCity(value)
   }
-  const handleAvatar = el => {
+
+  function handleInputImage(el) {
     setAvatar(el.target.files[0])
-    console.log(avatar)
+    setPreview(el.target.files[0])
   }
   
+  const [camposInvalidos, setCamposInvalidos] = useState([])
   const handleSubmit = evt => {
     evt.preventDefault()
 
-    const camposInvalidos = []
 
     if(!name) camposInvalidos.push(' nome')
     if(!email) camposInvalidos.push(' email')
@@ -77,33 +83,51 @@ const Cadastro: React.FC = () => {
     if(!avatar) camposInvalidos.push(' imagem')
     console.log(camposInvalidos)
 
-    const userData = new FormData()
-    userData.append('name', name)
-    userData.append('email', email)
-    userData.append('cpf', cpf)
-    userData.append('phone', phone)
-    userData.append('cep', cep)
-    userData.append('street', street)
-    userData.append('number', number)
-    userData.append('selectedCity', selectedCity)
-    userData.append('selectedUf', selectedUf)
-    userData.append('password', password)
-    userData.append('avatar', avatar)
+    const userDataFD = new FormData()
+    userDataFD.append('name', name)
+    userDataFD.append('email', email)
+    userDataFD.append('cpf', cpf)
+    userDataFD.append('phone', phone)
+    userDataFD.append('cep', cep)
+    userDataFD.append('street', street)
+    userDataFD.append('number', number)
+    userDataFD.append('selectedCity', selectedCity)
+    userDataFD.append('selectedUf', selectedUf)
+    userDataFD.append('password', password)
+    userDataFD.append('avatar', avatar as any)
 
-    if(camposInvalidos.length > 0) {
-      console.log('fail')
-      //! fazer modal
-    }else {
-      console.log('entrou')
-      axios.post('https://leonardocorbi.dev/php/postUserRegister.php')
+    // if(camposInvalidos.length > 0) {
+      // setError(true)
+      // console.log('fail')
+    // }else {
+      // console.log('entrou')
+      axios.post('https://leonardocorbi.dev/php/postUserRegister.php', userDataFD)
         .then(res => console.log(res.data))
         .catch(err => console.log(err))
-    }
+    // }
   }
 
   return (
     <Container>
       <Header />
+      <BlackBackgroud className={error ? 'show' : 'hide'}/>
+      <ModalError className={error ? 'active' : 'deactivated'}>
+        <div className="content">
+          <span onClick={() => {
+            setError(false)
+            setCamposInvalidos([])
+          }}>X</span>
+          <p>
+            Os campos{camposInvalidos.map((campo, pos) => {
+              if(pos < 1) {
+                return campo
+              }else {
+                return ',' + campo
+              }
+            })} não estão preenchidos corretamente.
+          </p>
+        </div>
+      </ModalError>
       <Content>
 
         <h1>faça login ou crie sua conta</h1>
@@ -180,7 +204,7 @@ const Cadastro: React.FC = () => {
                     ))
                   }
                 </select>
-                <p>▼</p>              
+                <p>▼</p>
               </div>
 
 
@@ -195,14 +219,16 @@ const Cadastro: React.FC = () => {
 
               <div>
                 <span className="imgContainer">
-                  <img src={avatar ? URL.createObjectURL(avatar) : 'https://thumbs.dreamstime.com/b/opte-pelo-avatar-placeholder-da-foto-%C3%ADcone-do-perfil-124557887.jpg'} alt="avatar" />
+                  <span className="imageWrapper">
+                    <img src={preview ? URL.createObjectURL(preview) : 'https://thumbs.dreamstime.com/b/opte-pelo-avatar-placeholder-da-foto-%C3%ADcone-do-perfil-124557887.jpg'} alt="avatar" />
+                  </span>
                 </span>
                 <span>
                   <p>sua foto</p>
                   1x1
                   <label className="avatarbtn" htmlFor="avatar">Selecione sua foto</label>
                   <input className="avatar" type="file" name="avatar" id="avatar"
-                    onChange={el => handleAvatar(el)}
+                    onChange={el => handleInputImage(el)}
                   />
                 </span>
               </div>              

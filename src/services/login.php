@@ -1,13 +1,32 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 
-session_start();
+$con = mysqli_connect('162.241.2.213', 'gabr5590', '4hvfM342zI', 'gabr5590_tlimited');
 
-$_SESSION['nome'] = 'leo';
+$name = $_POST['name'];
+$password = md5($_POST['password']);
 
-echo $_SESSION['nome'].' set in login';
-print('oi');
+if(preg_match('/@/', $name)) {
+  $query = "SELECT * FROM usuarios WHERE email = '$name'";
+}else {
+  $query = "SELECT * FROM usuarios WHERE cpf = $name";
+}
 
-session_id()
+$result = mysqli_query($con, $query);
+
+$numberOfRows = mysqli_num_rows($result);
+
+if($numberOfRows) {
+  while($data = mysqli_fetch_assoc($result)) {
+    if($data['senha'] === $password) {
+      echo 'ok';
+    }else {
+      echo 'senha';
+    }
+  }
+}else {
+  echo 'usuario';
+}
+
 
 ?>

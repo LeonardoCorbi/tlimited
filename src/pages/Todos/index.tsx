@@ -19,6 +19,7 @@ import Footer from '../../components/Footer';
 import Recommended from '../../components/Recommended';
 
 const Todos: React.FC = () => {
+  document.title = 'TLIMITED - TODOS'
   const [orderSelected, setOrderSelected] = useState('preferidos')
 
   //! BUSCAR PRODUTOS

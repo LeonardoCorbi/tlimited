@@ -26,7 +26,9 @@ interface MatchProps {
 }
 
 const Pesquisa: React.FC<MatchProps> = ({match}) => {
+  document.title = `Pesquisa - ${match.params.query}`
   const [orderSelected, setOrderSelected] = useState('preferidos')
+  const [notFound, setNotFound] = useState(false)
 
   //! BUSCAR PRODUTOS
   const [update, setUpdate] = useState(0)
@@ -434,7 +436,19 @@ const Pesquisa: React.FC<MatchProps> = ({match}) => {
                     />
                   ))
               )
-              : <p>Não tem</p>
+              : (
+                <>
+                  {
+                    setTimeout(() => {
+                      setNotFound(true) 
+                    }, 5000)
+                  }
+                  {
+                    notFound ? <p>Não foi encontrado nenhum item</p> : <img className="img" src="https://cdn.acaoentreamigos.online/assets/images/loader.gif" alt=""/>
+                  }
+                </>
+              ) 
+              
           }
         </Products>
   

@@ -32,13 +32,20 @@ const Header: React.FC<PageColorProps> = ({
   }, [])
 
   const [visible, setVisible] = useState(false)
+  const [search, setSearch] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
   
   function handleSearchBtn() {
     if(inputRef.current.value.length > 0){
-
+      window.location.href = `/pesquisa/${search}`
     }else{
       inputRef.current.focus()
+    }
+  }
+
+  const busca = (key: string) => {
+    if(key === 'Enter') {
+      window.location.href = `/pesquisa/${search}`
     }
   }
   
@@ -91,6 +98,8 @@ const Header: React.FC<PageColorProps> = ({
               ref={inputRef} 
               onBlur={() => setVisible(false)} 
               onFocus={() => setVisible(true)} 
+              onChange={el => setSearch(el.target.value)}
+              onKeyDown={key => busca(key.key)}
               type="text" name="search" id="search"
             />
             <SearchIcon active={visible} onClick={handleSearchBtn}/>

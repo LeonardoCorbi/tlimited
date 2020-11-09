@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {AiFillEye, AiFillEyeInvisible} from 'react-icons/ai'
 
 export const Container = styled.div`
 
@@ -33,6 +34,14 @@ export const Content = styled.main`
 
     border: 2px solid black;
 
+    .erro {
+      border: 2px solid red;
+    }
+
+    .wrapper {
+      position: relative;
+    }
+
     p, label {
       font-size: 2.4rem;
     }
@@ -46,6 +55,7 @@ export const Content = styled.main`
       height: 70px;
       font-size: 2.4rem;
       padding: 0 16px;
+      width: 100%;
     }
 
     button {
@@ -61,6 +71,8 @@ export const Content = styled.main`
       border: 2px solid black;
 
       padding-top: 8px;
+
+      cursor: pointer;
     }
 
     span {
@@ -85,4 +97,24 @@ export const Content = styled.main`
     }
 
   }
+`
+
+export const ShownEye = styled(AiFillEye)`
+  position: absolute;
+
+  width: 32px;
+  height: 32px;
+
+  top: 35%;
+  right: 16px;
+`
+
+export const HiddenEye = styled(AiFillEyeInvisible)`
+  position: absolute;
+
+  width: 32px;
+  height: 32px;
+
+  top: 35%;
+  right: 16px;
 `

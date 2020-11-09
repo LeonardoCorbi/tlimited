@@ -165,7 +165,7 @@ const Item: React.FC<matchProps> = ({ match }) => {
             </SizeContainer>
 
             <PriceContainer>
-              <h1>R${Number(productInfo.map(prod => prod.valor)).toFixed(2)}</h1>
+              <h1>{Number(productInfo.map(prod => prod.valor)).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</h1>
               <p>ou 5x de {(Number(productInfo.map(prod => prod.valor)) / 5).toFixed(2)}</p>
               <p>FRETE GRÁTIS</p>
             </PriceContainer>

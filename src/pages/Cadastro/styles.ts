@@ -1,8 +1,115 @@
 import styled from 'styled-components';
 
 export const Container = styled.main`
+  .active {
+    display: initial;
+
+    animation-name: animateEnter;
+    animation-duration: 500ms;
+  }
+  .deactivated {
+    display: none;
+
+    animation-name: animateExit;
+    animation-duration: 500ms;
+  }
+
+  .show {
+    display: initial;
+    opacity: 0.5;
+    transition: opacity 2s ease-in-out;
+  }
+  .hide {
+    display: none;
+  }
+
+  @keyframes animateEnter {
+    0% {display: initial;}
+    1% {top: -800px; opacity: 0}
+    100% {top: 50%; opacity: 1}
+  }
+  
+  @keyframes animateExit {
+    0% {top: 50%; opacity: 1}
+    99% {top: -800px; opacity: 0;}
+  }
 `
 
+export const BlackBackgroud = styled.div`
+  position: fixed;
+  display: none;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  opacity: 0;
+
+  transition: opacity 2s ease-in-out;
+
+  background: black;
+  z-index: 1000;
+
+`
+export const ModalError = styled.div`
+  position: fixed;
+  display: none;
+  background: white;
+  border: 2px solid black;
+  
+  width: 500px;
+  height: 300px;
+  
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  z-index: 1020;
+
+  padding: 16px;
+  
+  span {
+    position: absolute;
+
+    border: 2px solid black;
+    background: var(--green);
+
+    width: 24px;
+    height: 24px;
+
+    padding-top: 6px;
+
+    top: 4px;
+    right: 4px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    user-select: none;
+    cursor: pointer;
+
+    font-size: 20px;
+  }
+
+  div {
+    height: 100%;
+  }
+
+  p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 100%;
+
+    font-size: 24px;
+
+    text-align: center;
+  }
+
+`
 
 export const Content = styled.main`
   display: flex;
@@ -179,7 +286,7 @@ export const Column3 = styled.span`
       width: 170px;
       height: 170px;
       position: relative;
-    
+
       &::before {
         height: 170px;
         width: 170px;
@@ -191,6 +298,13 @@ export const Column3 = styled.span`
         right: 13px;
         bottom: -13px;
         left: -13px;
+      }
+
+      .imageWrapper {
+        width: 170px;
+        height: 170px;
+
+        overflow: hidden;
       }
     }
 
@@ -248,6 +362,8 @@ export const Column3 = styled.span`
     border: 2px solid black;
 
     padding-top: 8px;
+
+    cursor: pointer;
   }
 
   .avatar {
