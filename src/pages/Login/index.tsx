@@ -33,15 +33,26 @@ const Login: React.FC = () => {
 
     const res = await axios.post('https://leonardocorbi.dev/php/login.php', loginFD)
 
-    if(res.data === 'ok') {
-
-    }else if(res.data === 'usuario') {
+    if(res.data === 'usuario') {
       setUsuarioInvalido(true)
     }else if(res.data === 'senha'){
       setSenhaInvalida(true)
+    }else {
+      sessionStorage.setItem('tl_id', `${res.data.id}`)
+      sessionStorage.setItem('tl_cpf', `${res.data.cpf}`)
+      sessionStorage.setItem('tl_nome', `${res.data.nome}`)
+      sessionStorage.setItem('tl_email', `${res.data.email}`)
+      sessionStorage.setItem('tl_telefone', `${res.data.telefone}`)
+      sessionStorage.setItem('tl_cep', `${res.data.cep}`)
+      sessionStorage.setItem('tl_endereco', `${res.data.endereco}`)
+      sessionStorage.setItem('tl_numero', `${res.data.numero}`)
+      sessionStorage.setItem('tl_cidade', `${res.data.cidade}`)
+      sessionStorage.setItem('tl_estado', `${res.data.estado}`)
+      sessionStorage.setItem('tl_avatar', `${res.data.avatar}`)
+      window.history.back()
     }
   }
-
+ 
   return (
     <Container>
       <Header />

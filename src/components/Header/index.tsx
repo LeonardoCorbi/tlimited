@@ -48,7 +48,7 @@ const Header: React.FC<PageColorProps> = ({
       window.location.href = `/pesquisa/${search}`
     }
   }
-  
+ 
   return (
     <Container>
       <MenuContainer>
@@ -107,7 +107,11 @@ const Header: React.FC<PageColorProps> = ({
           <img height="40px" src={flashIcon} alt="flashIcon"/>
           <CartIcon />
           <Link to="/login">
-            <ProfileIcon />
+            {
+              sessionStorage.getItem('tl_avatar')
+                ? <img className="avatarImg" src={`${sessionStorage.getItem('tl_avatar')}`} alt=""/>
+                : <ProfileIcon />
+            }
           </Link>
 
         </div>

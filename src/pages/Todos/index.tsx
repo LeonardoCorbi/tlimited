@@ -17,6 +17,7 @@ import Product from '../../components/Product';
 import Footer from '../../components/Footer';
 // import { shoes, footballBoots, sneakers } from '../../seed';
 import Recommended from '../../components/Recommended';
+import Ad from '../../components/Ad';
 
 const Todos: React.FC = () => {
   document.title = 'TLIMITED - TODOS'
@@ -427,18 +428,7 @@ const Todos: React.FC = () => {
           }
         </Products>
   
-        <AdContainer>
-          
-          <img src={require('../../assets/adTodos.png')} alt=" Propaganda de Promoção de 30% de desconto"/>
-
-          <p>
-            PROMOÇÃO NIKE<br/>
-            EDIÇÃO LIMITADA COM<br/>
-            <div><span>30%</span> DE DESCONTO</div> 
-          </p>
-
-        </AdContainer>
-
+        <Ad adName="Home" />
          
 
       </Content>

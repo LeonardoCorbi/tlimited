@@ -17,6 +17,7 @@ import Footer from '../../components/Footer';
 import { footballBoots } from '../../seed';
 import Recommended from '../../components/Recommended';
 import { Link } from 'react-router-dom';
+import Ad from '../../components/Ad';
 
 const Todos: React.FC = () => {
 
@@ -201,17 +202,7 @@ const Todos: React.FC = () => {
 
         </Products>
   
-        <AdContainer>
-          
-          <img src={require('../../assets/adTodos.png')} alt=" Propaganda de Promoção de 30% de desconto"/>
-
-          <p>
-            PROMOÇÃO NIKE<br/>
-            EDIÇÃO LIMITADA COM<br/>
-            <div><span>30%</span> DE DESCONTO</div> 
-          </p>
-
-        </AdContainer>
+        <Ad />
 
          
 

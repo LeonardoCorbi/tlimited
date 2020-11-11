@@ -39,14 +39,14 @@ export const DesignerInfo = styled.div`
   margin-left: 13px;
 
   span {
-    max-width: 103px;
-    max-height: 111px;
+    width: 111px;
+    height: 111px;
 
     overflow: hidden;
 
     &::before {
       height: 111px;
-      width: 103px;
+      width: 111px;
       max-width: 111px;
       content: '';
       position: absolute;
@@ -60,8 +60,10 @@ export const DesignerInfo = styled.div`
 
     img {
       height: 111px;
+      width: 111px;
 
-      transform: translateX(-50%);
+      object-position: center;
+      object-fit: cover;
     } 
   
   }
@@ -120,7 +122,7 @@ export const FlashIcon = styled.svg`
 
 export const Gallery = styled.div`
   width: 100%;
-  height: 100%;
+  height: 700px;
 
   box-sizing: border-box;
   margin: 0;
@@ -148,6 +150,13 @@ export const Gallery = styled.div`
     background: var(--green);
 
     width: 72px;
+  }
+
+  img {
+    width: 100%;
+    height: 500px;
+
+    object-fit: contain;
   }
   
 `

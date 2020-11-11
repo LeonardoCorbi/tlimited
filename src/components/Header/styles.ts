@@ -29,6 +29,15 @@ export const MenuContainer = styled.div`
   display: flex;
   position: relative;
 
+  .avatarImg {
+    width: 40px;
+    height: 40px;
+
+    border: 2px solid black;
+
+    margin-left: 40px;
+  }
+
   &::after {
     content: '';
     position: absolute;

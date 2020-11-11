@@ -26,6 +26,7 @@ import flashIcon from '../../assets/icons/flashIcon.svg'
 import Header from '../../components/Header';
 import Recommended from '../../components/Recommended';
 import Footer from '../../components/Footer';
+import Ad from '../../components/Ad';
 
 interface matchProps {
   match: {
@@ -36,11 +37,14 @@ interface matchProps {
 }
 
 const Item: React.FC<matchProps> = ({ match }) => {
-  const [amount, setAmount] = useState(1)
 
+  const [amount, setAmount] = useState(1)
+  
   const [productInfo, setProductInfo] = useState([])
   const [productImages, setProductImages] = useState([])
   const [productUnidades, setProductUnidades] = useState([])
+  
+  document.title = `${productInfo.map(prod => prod.nome)} - TLIMITED`
 
   useEffect(() => {
     const productFD = new FormData()
@@ -68,8 +72,21 @@ const Item: React.FC<matchProps> = ({ match }) => {
   function handleAddBtn() {
     setAmount(amount + 1)
   }
-
+  
   const [tamanhoSelected, setTamanhoSelected] = useState(0)
+
+  const handleOrderButton = el => {
+    el.preventDefault()
+
+    if(!sessionStorage.getItem('tl_id')) {
+      window.location.href = 'https://leonardocorbi.dev/login'
+    }else if(amount && tamanhoSelected && sessionStorage.getItem('tl_id')) {
+      localStorage.setItem(`product_${match.params.id}`, match.params.id)
+      localStorage.setItem(`product_${match.params.id}_numero`, `${tamanhoSelected}`)
+      localStorage.setItem(`product_${match.params.id}_quantidade`, `${amount}`)
+    }
+  }
+
 
   return (
     <Container>
@@ -87,7 +104,7 @@ const Item: React.FC<matchProps> = ({ match }) => {
           <DesignerInfo>
 
             <span>
-              <img src={`${productInfo.map(prod => prod.designer_imagem)}`} alt="img"/>
+              <img src={`${productInfo.map(prod => prod.designer_imagem)}`} alt=""/>
             </span>
 
             <div>
@@ -202,7 +219,7 @@ const Item: React.FC<matchProps> = ({ match }) => {
               </p>
             </AmountContainer>
 
-            <BuyButton type="submit">
+            <BuyButton onClick={handleOrderButton}>
               <span>COMPRAR</span>
               <img src={flashIcon} alt="flashIcon"/>
             </BuyButton>
@@ -218,7 +235,8 @@ const Item: React.FC<matchProps> = ({ match }) => {
         </HistPlace>
 
       </Content>
-
+      
+      <Ad adName={`${productInfo.map(prod => prod.marca)}`}/>
       <Recommended />
       
       <Footer />
