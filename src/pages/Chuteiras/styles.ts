@@ -32,9 +32,19 @@ export const LeftColumn = styled.div`
   line-height: 35px;
 `
 export const OrderBy = styled.div`
+
+  .active {
+    color: var(--green);
+  }
+  .deactivated {
+    color: black;
+  }
  
   ul {
     margin-top: 6px;
+    li {
+      cursor: pointer;
+    }
   }
 `
 
@@ -169,8 +179,8 @@ export const ColorSelector = styled.div`
       background: #594E96;
     }
 
-    .reddish-purple {
-      background: #BF2F55;
+    .black {
+      background: black;
     }
 
     input {

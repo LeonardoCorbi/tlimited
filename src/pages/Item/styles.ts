@@ -347,6 +347,8 @@ export const BuyButton = styled.button`
 
   cursor: pointer;
 
+  user-select: none;
+
   span {
     font-size: 3.6rem;
     margin-right: 8px;

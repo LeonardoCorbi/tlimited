@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom'
+import { ReduxProps } from '../../Redux'
+import { useSelector } from 'react-redux'
+import { UserProps } from '../../Redux/User'
 
 import flashIcon from '../../assets/icons/flashIcon.svg'
 
@@ -48,6 +51,9 @@ const Header: React.FC<PageColorProps> = ({
       window.location.href = `/pesquisa/${search}`
     }
   }
+
+  const cartItem = useSelector((redux: ReduxProps) => redux.cart)
+  const userInfo = useSelector((redux: ReduxProps) => redux.user as UserProps)
  
   return (
     <Container>
@@ -80,14 +86,6 @@ const Header: React.FC<PageColorProps> = ({
                 </span>
               </Link>
             </li>
-            <li>
-              <Link to="/sneakers">
-                <span 
-                  style={{'color': sneakers ? '#3DFB03' : 'black' }}>
-                  SNEAKERS
-                </span>
-              </Link>
-            </li>
           </ul>
         </nav>
 
@@ -105,14 +103,25 @@ const Header: React.FC<PageColorProps> = ({
             <SearchIcon active={visible} onClick={handleSearchBtn}/>
           </SearchContainer>
           <img height="40px" src={flashIcon} alt="flashIcon"/>
-          <CartIcon />
-          <Link to="/login">
+          <Link to="/carrinho">
+            <CartIcon />
             {
-              sessionStorage.getItem('tl_avatar')
-                ? <img className="avatarImg" src={`${sessionStorage.getItem('tl_avatar')}`} alt=""/>
-                : <ProfileIcon />
+              cartItem.length > 0
+                ? (
+                  <div className="floatItemsCart">
+                    {cartItem.length}
+                  </div>
+                )
+                : undefined
             }
           </Link>
+          <div>
+            {
+              userInfo.avatar
+                ? <img className="avatarImg" src={`${userInfo.avatar}`} alt=""/>
+                : <Link to="/login"><ProfileIcon /></Link>
+            }
+          </div>
 
         </div>
       </MenuContainer>

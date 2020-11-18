@@ -5,7 +5,7 @@ export const Container = styled.div`
 
   grid-area: recommend;
 
-  margin-top: 50rem;
+  margin-top: 600px;
 
   p {
     font-size: 2.4rem;

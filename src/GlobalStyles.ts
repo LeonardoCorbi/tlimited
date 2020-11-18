@@ -8,8 +8,13 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  main {
+    user-select: none;
+  }
+
   html, body, #root {
     height: 100%;
+    text-transform: uppercase;
   }
 
   body {

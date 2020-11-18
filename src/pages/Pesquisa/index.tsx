@@ -458,7 +458,7 @@ const Pesquisa: React.FC<MatchProps> = ({match}) => {
          
 
       </Content>
-      <Recommended />
+      <Recommended brand={''}/>
       <Footer />
     </Container>
   );

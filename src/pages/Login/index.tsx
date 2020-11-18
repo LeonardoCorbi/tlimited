@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { 
   Container, 
@@ -11,6 +12,9 @@ import {
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import { setLogin } from '../../Redux/Login'
+import { setUser } from '../../Redux/User'
+import { ReduxProps } from '../../Redux';
 
 const Login: React.FC = () => {
   document.title = 'TLIMITED - LOGIN'
@@ -23,6 +27,12 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('')
 
   const [loginRes, setLoginRes] = useState('')
+  const dispatch = useDispatch()
+  const isLogged = useSelector((redux: ReduxProps) => redux.login)
+
+  if(isLogged) {
+    window.history.back()
+  }
 
   const login = async el => {
     el.preventDefault()
@@ -38,17 +48,8 @@ const Login: React.FC = () => {
     }else if(res.data === 'senha'){
       setSenhaInvalida(true)
     }else {
-      sessionStorage.setItem('tl_id', `${res.data.id}`)
-      sessionStorage.setItem('tl_cpf', `${res.data.cpf}`)
-      sessionStorage.setItem('tl_nome', `${res.data.nome}`)
-      sessionStorage.setItem('tl_email', `${res.data.email}`)
-      sessionStorage.setItem('tl_telefone', `${res.data.telefone}`)
-      sessionStorage.setItem('tl_cep', `${res.data.cep}`)
-      sessionStorage.setItem('tl_endereco', `${res.data.endereco}`)
-      sessionStorage.setItem('tl_numero', `${res.data.numero}`)
-      sessionStorage.setItem('tl_cidade', `${res.data.cidade}`)
-      sessionStorage.setItem('tl_estado', `${res.data.estado}`)
-      sessionStorage.setItem('tl_avatar', `${res.data.avatar}`)
+      dispatch(setUser(res.data))
+      dispatch(setLogin(true))
       window.history.back()
     }
   }

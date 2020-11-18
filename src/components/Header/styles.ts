@@ -36,6 +36,8 @@ export const MenuContainer = styled.div`
     border: 2px solid black;
 
     margin-left: 40px;
+
+    cursor: default;
   }
 
   &::after {
@@ -82,11 +84,36 @@ export const MenuContainer = styled.div`
   div {
     display: flex;
     align-items: center;
+
+    position: relative;
   }
 
   div * {
     /* margin-left: 53px; */
     cursor: pointer;
+  }
+
+  .floatItemsCart {
+    position: absolute;
+    top: 0px;
+    right: 70px;
+    background: var(--green);
+
+    border: 2px solid black;
+
+    width: 24px;
+    height: 24px;
+
+    text-align: center;
+    font-size: 16px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    padding-top: 6px;
+
+    pointer-events: none;
   }
 
 `

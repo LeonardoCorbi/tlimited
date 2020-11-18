@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios'
 import Carousel from 'react-elastic-carousel'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { 
   Container, 
@@ -27,6 +28,10 @@ import Header from '../../components/Header';
 import Recommended from '../../components/Recommended';
 import Footer from '../../components/Footer';
 import Ad from '../../components/Ad';
+
+import { addCart } from '../../Redux/Cart'
+import { setLogin } from '../../Redux/Login'
+import { ReduxProps } from '../../Redux'
 
 interface matchProps {
   match: {
@@ -66,27 +71,64 @@ const Item: React.FC<matchProps> = ({ match }) => {
   const handleRemoveBtn = () => {
     if(amount !== 1 ){
       setAmount(amount - 1)
+      updateOrder(tamanhoSelected, amount)
     }
   }
 
   function handleAddBtn() {
     setAmount(amount + 1)
+    updateOrder(tamanhoSelected, amount)
   }
   
   const [tamanhoSelected, setTamanhoSelected] = useState(0)
 
+  useEffect(() => {
+    updateOrder(tamanhoSelected, amount)
+  } ,[tamanhoSelected])
+
+  const dispatch = useDispatch()
+  const [orderItem, setOrderItem] = useState({
+    name: '',
+    color: '',
+    size: 0,
+    amount: 0,
+    image: '',
+    price: 0
+  })
+
+  const updateOrder = (size: number, amount: number) => {
+    setOrderItem({
+      name: `${productInfo.map(item => item.nome)}`,
+      color: `${productInfo.map(item => item.cor)}`,
+      size,
+      amount,
+      image: productImages.map(image => image)[0],
+      price: Number(productInfo.map(item => item.valor))
+    })
+  }
+
+  const isLogged = useSelector((redux: ReduxProps) => redux.login)
+
   const handleOrderButton = el => {
     el.preventDefault()
-
-    if(!sessionStorage.getItem('tl_id')) {
-      window.location.href = 'https://leonardocorbi.dev/login'
-    }else if(amount && tamanhoSelected && sessionStorage.getItem('tl_id')) {
-      localStorage.setItem(`product_${match.params.id}`, match.params.id)
-      localStorage.setItem(`product_${match.params.id}_numero`, `${tamanhoSelected}`)
-      localStorage.setItem(`product_${match.params.id}_quantidade`, `${amount}`)
+    
+    if(isLogged && tamanhoSelected > 0) {
+      dispatch(addCart(orderItem))
+      setTimeout(() => {
+        window.location.href = '/carrinho'
+      }, 500)
+    }else if(!isLogged){
+      window.location.href = '/login'
     }
   }
 
+  const itemCart = useSelector((redux: ReduxProps) => redux)
+
+  function debug() {
+    console.debug('orderItem | ', orderItem)
+    console.debug('redux cart | ', itemCart.cart)
+    console.debug('redux logged | ', isLogged)
+  }
 
   return (
     <Container>
@@ -97,7 +139,7 @@ const Item: React.FC<matchProps> = ({ match }) => {
 
         <AboutPlace>
         
-          <h2>história e material</h2>
+          <h2 onClick={debug}>história e material</h2>
         
           <p>{productInfo.map(prod => prod.descricao)}</p>
         
@@ -169,6 +211,7 @@ const Item: React.FC<matchProps> = ({ match }) => {
                         onFocus={el => {
                           setTamanhoSelected(Number(el.target.value))
                           setAmount(1)
+                          updateOrder(tamanhoSelected, amount)
                         }}
                         value={prod.tamanho} />
                       <span>{prod.tamanho}</span>
@@ -196,8 +239,8 @@ const Item: React.FC<matchProps> = ({ match }) => {
                     <line x1="0" x2="15" y1="7" y2="7" />                  
                   </svg>
                 </span>
-                <p>{amount}</p>
-                <span onClick={() => !tamanhoSelected ? undefined : amount < (productUnidades.find(prod => prod.tamanho == tamanhoSelected).quantidade) ? handleAddBtn() : undefined }>
+                <p>{amount - 1}</p>
+                <span onClick={() => !tamanhoSelected ? undefined : amount -1 < (productUnidades.find(prod => prod.tamanho == tamanhoSelected).quantidade) ? handleAddBtn() : undefined }>
                   <svg>
                     <line x1="0" y1="8" x2="16" y2="8" />                  
                     <line x1="8" y1="16" x2="8" y2="0" />                  
@@ -237,7 +280,7 @@ const Item: React.FC<matchProps> = ({ match }) => {
       </Content>
       
       <Ad adName={`${productInfo.map(prod => prod.marca)}`}/>
-      <Recommended />
+      <Recommended brand={`${productInfo.map(prod => prod.marca)}`}/>
       
       <Footer />
 

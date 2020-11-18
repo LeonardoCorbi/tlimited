@@ -432,7 +432,7 @@ const Todos: React.FC = () => {
          
 
       </Content>
-      <Recommended />
+      <Recommended brand=""/>
       <Footer />
     </Container>
   );
