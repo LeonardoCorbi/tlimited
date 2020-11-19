@@ -20,7 +20,29 @@ move_uploaded_file($_FILES['avatar']['tmp_name'], '../static/images/avatars/'.$i
 $query = "INSERT INTO `usuarios`(`cpf`, `nome`, `email`, `telefone`, `cep`, `endereco`, `numero`, `cidade`, `estado`, `senha`, `avatar`) VALUES ($cpf, '$name', '$email', $phone, $cep, '$street', '$number', '$city', '$uf', '$password', 'https://leonardocorbi.dev/static/images/avatars/$imageName')";
 
 if($result = mysqli_query($con, $query)) {
-  echo $cpf;
+  $queryLogin = "SELECT * FROM usuarios WHERE cpf = $cpf";
+  
+  $resultLogin = mysqli_query($con, $queryLogin);
+
+  $user = Array();
+
+  while($data = mysqli_fetch_array($resultLogin, MYSQLI_ASSOC)) {
+    $user []= Array(
+      'id' => $data['id'],
+      'cpf' => $data['cpf'],
+      'nome' => $data['nome'],
+      'email' => $data['email'],
+      'telefone' => $data['telefone'],
+      'cep' => $data['cep'],
+      'endereco' => $data['endereco'],
+      'numero' => $data['numero'],
+      'cidade' => $data['cidade'],
+      'estado' => $data['estado'],
+      'senha' => $data['senha'],
+      'avatar' => $data['avatar']
+    );
+    echo json_encode($user);
+  }
 }else {
   echo 'invalid';
 }

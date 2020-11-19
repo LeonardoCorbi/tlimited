@@ -14,6 +14,7 @@ import Pesquisa from '../pages/Pesquisa'
 import Carrinho from '../pages/Carrinho'
 import FinalizarCarrinho from '../pages/FinalizarCarrinho'
 import Chuteiras from '../pages/Chuteiras'
+import TelaFinal from '../pages/TelaFinal'
 
 
 const Routes: React.FC = () =>{
@@ -30,6 +31,7 @@ const Routes: React.FC = () =>{
           <Route exact path="/pesquisa/:query" component={Pesquisa} />
           <Route path="/carrinho" component={Carrinho} />
           <Route exact path="/finalizar-compra" component={FinalizarCarrinho} />
+          <Route exact path="/pedido-concluido" component={TelaFinal} />
         </BrowserRouter>
       </PersistGate>
     </Provider>

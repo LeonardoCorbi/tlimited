@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.js": "/static/js/main.9b717090.chunk.js",
-    "main.js.map": "/static/js/main.9b717090.chunk.js.map",
+    "main.js": "/static/js/main.c525aa15.chunk.js",
+    "main.js.map": "/static/js/main.c525aa15.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.0c77ef25.js",
     "runtime-main.js.map": "/static/js/runtime-main.0c77ef25.js.map",
-    "static/js/2.5ca9cbf1.chunk.js": "/static/js/2.5ca9cbf1.chunk.js",
-    "static/js/2.5ca9cbf1.chunk.js.map": "/static/js/2.5ca9cbf1.chunk.js.map",
+    "static/js/2.1c529cd5.chunk.js": "/static/js/2.1c529cd5.chunk.js",
+    "static/js/2.1c529cd5.chunk.js.map": "/static/js/2.1c529cd5.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.dbb67ce6818411564cd2e86f36ddd20e.js": "/precache-manifest.dbb67ce6818411564cd2e86f36ddd20e.js",
+    "precache-manifest.0e7e3cba63574f24732a72f7d3e71e66.js": "/precache-manifest.0e7e3cba63574f24732a72f7d3e71e66.js",
     "service-worker.js": "/service-worker.js",
-    "static/js/2.5ca9cbf1.chunk.js.LICENSE.txt": "/static/js/2.5ca9cbf1.chunk.js.LICENSE.txt",
-    "static/js/main.9b717090.chunk.js.LICENSE.txt": "/static/js/main.9b717090.chunk.js.LICENSE.txt",
+    "static/js/2.1c529cd5.chunk.js.LICENSE.txt": "/static/js/2.1c529cd5.chunk.js.LICENSE.txt",
+    "static/js/main.c525aa15.chunk.js.LICENSE.txt": "/static/js/main.c525aa15.chunk.js.LICENSE.txt",
     "static/media/adAdidas.png": "/static/media/adAdidas.e29f5057.png",
     "static/media/adNike.png": "/static/media/adNike.17debebe.png",
     "static/media/adPuma.png": "/static/media/adPuma.f0956a1d.png",
@@ -20,7 +20,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.0c77ef25.js",
-    "static/js/2.5ca9cbf1.chunk.js",
-    "static/js/main.9b717090.chunk.js"
+    "static/js/2.1c529cd5.chunk.js",
+    "static/js/main.c525aa15.chunk.js"
   ]
 }

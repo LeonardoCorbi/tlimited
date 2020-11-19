@@ -78,7 +78,7 @@ const Carrinho = () => {
                         {(item.price).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}
                       </div>
                       <div>
-                        {(item.amount * item.price).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}
+                        {((item.amount) * item.price).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}
                       </div>
                       <div
                         onClick={() => {

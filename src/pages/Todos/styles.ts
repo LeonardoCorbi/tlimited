@@ -90,6 +90,8 @@ export const Brands = styled.div`
 
       img {
         position: absolute;
+
+        pointer-events: none;
       }
 
     }

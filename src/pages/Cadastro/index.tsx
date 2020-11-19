@@ -1,5 +1,8 @@
 import React, { useEffect, useState, ChangeEvent } from 'react';
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { setLogin } from '../../Redux/Login'
+import { setUser } from '../../Redux/User'
 
 import { 
   Container,
@@ -39,6 +42,8 @@ const Cadastro: React.FC = () => {
   const [avatar, setAvatar] = useState([])
   const [preview, setPreview] = useState('')
 
+  const dispatch = useDispatch()
+
   
   useEffect(() => {
     axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados/')
@@ -66,7 +71,7 @@ const Cadastro: React.FC = () => {
   }
   
   const [camposInvalidos, setCamposInvalidos] = useState([])
-  const handleSubmit = evt => {
+  const handleSubmit = async evt => {
     evt.preventDefault()
 
 
@@ -96,15 +101,25 @@ const Cadastro: React.FC = () => {
     userDataFD.append('password', password)
     userDataFD.append('avatar', avatar as any)
 
-    // if(camposInvalidos.length > 0) {
-      // setError(true)
-      // console.log('fail')
-    // }else {
-      // console.log('entrou')
-      axios.post('https://leonardocorbi.dev/php/postUserRegister.php', userDataFD)
-        .then(res => console.log(res.data))
-        .catch(err => console.log(err))
-    // }
+    if(camposInvalidos.length > 0) {
+      setError(true)
+      console.log('fail')
+    }else {
+      console.log('entrou')
+      const loginReq = await axios.post('https://leonardocorbi.dev/php/postUserRegister.php', userDataFD)
+      
+      if(typeof loginReq.data === 'object') {
+        console.debug('ok', loginReq.data)
+        dispatch(setUser(loginReq.data[0]))
+        dispatch(setLogin(true))
+        setTimeout(() => {
+          window.history.back()
+        }, 100)
+      }else {
+        alert('Algo deu errado com a gravação do usuário no banco de dados.')
+      }
+    }
+
   }
 
   return (

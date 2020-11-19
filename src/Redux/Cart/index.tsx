@@ -17,6 +17,10 @@ export default function cartReducer(cart = INITIAL_STATE, action) {
     const index = cart.findIndex(item => item.name === action.removeItem)
     return cart.slice(0, index).concat(cart.slice(index + 1))
   }
+  if(action.type === 'REMOVE_ALL') {
+    cart = []
+    return cart
+  }
   return cart
 }
 
@@ -31,5 +35,12 @@ export const removeCart = removeItem => {
   return {
     type: 'REMOVE_ITEM',
     removeItem
+  }
+}
+
+export const cleanCart = removeAll => {
+  return {
+    type: 'REMOVE_ALL',
+    removeAll
   }
 }

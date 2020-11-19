@@ -179,7 +179,7 @@ const FinalizarCarrinho = () => {
                   <option value="1x">5x {(total/5).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</option>
                 </select>
               </div>
-              <button>Comprar</button>
+              <button onClick={() => window.location.href = '/pedido-concluido'}>Comprar</button>
             </Content3>
           </PaymentColumn>
         </MainView>
